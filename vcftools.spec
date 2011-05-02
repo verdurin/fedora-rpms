@@ -1,12 +1,13 @@
 Name:		vcftools
-Version:	0.1.4a
+Version:	0.1.5
 Release:	1%{?dist}
 Summary:	VCF file manipulation tools
 
 Group:		Applications/Engineering
 License:	GPLv3 
 URL:		http://vcftools.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}_v%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/%{name}/%{name}_%{version}.tar.gz
+Patch0:		perl-makefile-vcfstats.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	zlib-devel
@@ -20,7 +21,7 @@ comparing and calculate some basic population genetic statistics.
 
 %prep
 %setup -q -n %{name}_%{version}
-
+%patch0 -p1
 
 %build
 make %{?_smp_mflags} CPPFLAGS="%{optflags}"
@@ -34,6 +35,7 @@ make install PREFIX=%{buildroot}/usr
 mkdir -p %{buildroot}/%{perl_vendorarch}
 mv %{buildroot}/usr/lib/FaSlice.pm %{buildroot}/%{perl_vendorarch}
 mv %{buildroot}/usr/lib/Vcf.pm %{buildroot}/%{perl_vendorarch}
+mv %{buildroot}/usr/lib/VcfStats.pm %{buildroot}/%{perl_vendorarch}
 
 # Put single binary in correct location
 mkdir -p %{buildroot}/%{_bindir}
@@ -46,12 +48,12 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %doc README.txt
-%{_bindir}/compare-vcf
+%{_bindir}/vcf-compare
 %{_bindir}/fill-aa
 %{_bindir}/fill-an-ac
 %{_bindir}/fill-rsIDs
-%{_bindir}/merge-vcf
-%{_bindir}/query-vcf
+%{_bindir}/vcf-merge
+%{_bindir}/vcf-query
 %{_bindir}/vcf-annotate
 %{_bindir}/vcf-concat
 %{_bindir}/vcf-convert
@@ -64,9 +66,16 @@ rm -rf %{buildroot}
 %{_bindir}/vcftools
 %{perl_vendorarch}/FaSlice.pm
 %{perl_vendorarch}/Vcf.pm
-
+%{perl_vendorarch}/VcfStats.pm
 
 %changelog
+* Sun May 1 2011 Jack Tanner <ihok@hotmail.com> - 0.1.5-1
+- bump to 0.1.5
+- rename compare-vcf, merge-vcf, and query-vcf to vcf-compare,
+  vcf-merge, and vcf-query
+- add VcfStats.pm to perl export
+- patch perl/Makefile to export VcfStats.pm
+
 * Mon Mar 21 2011 Adam Huffman <bloch@verdurin.com> - 0.1.4a-1
 - initial version
 - fix CPPFLAGS

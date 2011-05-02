@@ -1,0 +1,12 @@
+--- vcftools_0.1.5/perl/Makefile.old        2011-04-13 09:07:49.000000000 -0400
++++ vcftools_0.1.5/perl/Makefile        2011-05-01 20:51:27.203011140 -0400
+@@ -1,7 +1,7 @@
+
+ BIN = vcf-compare fill-aa fill-rsIDs vcf-annotate vcf-merge vcf-isec vcf-stats vcf-to-tab fill-an-ac \
+     vcf-query vcf-convert vcf-subset vcf-validator vcf-concat vcf-sort
+-MOD = FaSlice.pm Vcf.pm
++MOD = FaSlice.pm Vcf.pm VcfStats.pm
+
+ install:
+            @for i in $(BIN); do cp $(CURDIR)/$$i $(BINDIR)/$$i; done; \
+
