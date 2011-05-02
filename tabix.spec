@@ -1,5 +1,5 @@
 Name:		tabix
-Version:	0.2.4
+Version:	0.2.5
 Release:	1%{?dist}
 Summary:	Generic indexer for TAB-delimited genome position files
 
@@ -81,7 +81,10 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Tue Apr 19 2011 Adam Huffman <adam@elstir.smith.man.ac.uk> - 0.2.4-1
+* Mon May  2 2011 Adam Huffman <bloch@verdurin.com> - 0.2.5-1
+- new upstream version
+
+* Tue Apr 19 2011 Adam Huffman <bloch@verdurin.com> - 0.2.4-1
 - new upstream release
 
 * Tue Mar 22 2011 Adam Huffman <bloch@verdurin.com> - 0.2.3-1
