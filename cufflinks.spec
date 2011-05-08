@@ -1,5 +1,5 @@
 Name:		cufflinks
-Version:	0.9.3
+Version:	1.0.1
 Release:	1%{?dist}
 Summary:	RNA-Seq transcript assembly, differential expression/regulation
 
@@ -8,10 +8,11 @@ License:	Boost
 URL:		http://cufflinks.cbcb.umd.edu/
 Source0:	http://cufflinks.cbcb.umd.edu/downloads/%{name}-%{version}.tar.gz
 Patch0:		%{name}-bam-header.patch
+Patch1:		%{name}-boost-thread.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	boost-devel samtools-devel zlib-devel
-BuildRequires:	autoconf automake
+BuildRequires:	autoconf automake python-devel
 
 
 %description 
@@ -30,7 +31,9 @@ at Caltech.
 
 %prep
 %setup -q
-%patch0 -p1
+#Look for BAM headers in the correct Fedora location
+%patch0 -p1 -b .cufflinks-bam-header.patch
+%patch1 -p1 -b .cufflinks-boost-thread.patch
 
 %build
 autoreconf
@@ -54,6 +57,12 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sun May  8 2011 Adam Huffman <bloch@verdurin.com> - 1.0.1-1
+- new upstream release
+- add python BR
+- fix header location patch
+- separate Boost thread patch
+
 * Mon Apr  4 2011 Adam Huffman <bloch@verdurin.com> - 0.9.3-1
 - initial version
 - patch to fix bam.h header search and to link boost_thread-mt
