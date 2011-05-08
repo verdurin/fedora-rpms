@@ -1,6 +1,6 @@
 Name:		din
-Version:	1.5.8.0
-Release:	3%{?dist}
+Version:	1.5.9
+Release:	1%{?dist}
 Summary:	A musical instrument using multiple Bezier curves
 
 Group:		Applications/Multimedia
@@ -30,10 +30,10 @@ scripts.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1 
-%patch3 -p1
+%patch0 -p1 -b .din-build
+%patch1 -p1 -b .din-libs
+%patch2 -p1 -b .din-include
+%patch3 -p1 -b .din-data
 
 %build
 autoreconf
@@ -60,6 +60,9 @@ rm -rf %{buildroot}
 %{_datadir}/%{name}/*
 
 %changelog
+* Sun May  8 2011 Adam Huffman <bloch@verdurin.com> - 1.5.9-1
+- new upstream release
+
 * Fri Apr 29 2011 Adam Huffman <bloch@verdurin.com> - 1.5.8.0-3
 - official description
 
