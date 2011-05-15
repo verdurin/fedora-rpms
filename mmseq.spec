@@ -1,6 +1,6 @@
 Name:		mmseq
 Version:	0.9.10b
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Haplotype and isoform specific expression estimation for RNA-seq
 
 Group:		Applications/Engineering
@@ -11,7 +11,10 @@ Patch0:		mmseq-sam-header.patch
 Patch1:		mmseq-flags.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	boost-devel samtools-devel gsl-devel zlib-devel
+BuildRequires:	boost-devel
+BuildRequires:	samtools-devel
+BuildRequires:	gsl-devel
+BuildRequires:	zlib-devel
 
 Requires:	ruby
 Requires:	samtools
@@ -27,6 +30,10 @@ estimation using multi-mapping RNA-seq reads.  Example scripts are included.
 %patch0 -p1 -b .mmseq-sam-header.patch
 #Use Fedora compilation headers
 %patch1 -p1 -b .mmseq-flags.patch
+
+#Remove bundled binaries
+rm bam2hits*-x86_64
+rm mmseq*-x86_64
 
 %build
 make %{?_smp_mflags} CXXFLAGS="%{optflags}"
@@ -48,14 +55,24 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc AUTHORS VERSION COPYING
+%doc AUTHORS COPYING
 %{_bindir}/bam2hits
 %{_bindir}/mmseq
-%{_bindir}/*.sh
-%{_bindir}/*.rb
-%{_bindir}/*.pl
+%{_bindir}/fastagrep.sh
+%{_bindir}/pileup.sh
+%{_bindir}/filterGTF.rb
+%{_bindir}/get_isize.rb
+%{_bindir}/haploref.rb
+%{_bindir}/sam2hits.rb
+%{_bindir}/testregexp.rb
+%{_bindir}/ensembl_gtf_to_gff.pl
 
 %changelog
+* Sun May 15 2011 Adam Huffman <bloch@verdurin.com> - 0.9.10b-2
+- remove bundled binaries
+- remove VERSION
+- explicit naming for included scripts
+
 * Sun May  8 2011 Adam Huffman <bloch@verdurin.com> - 0.9.10b-1
 - new upstream version
 - patch descriptions
