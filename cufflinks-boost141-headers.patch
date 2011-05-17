@@ -1,0 +1,20 @@
+--- cufflinks-1.0.1/ax_boost_base.m4	2010-10-11 20:25:39.000000000 +0100
++++ cufflinks-1.0.1.new/ax_boost_base.m4	2011-05-17 11:40:30.729088730 +0100
+@@ -108,7 +108,7 @@
+ 
+ 	AC_LANG_PUSH(C++)
+      	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+-	@%:@include <boost/version.hpp>
++	@%:@include <boost141/boost/version.hpp>
+ 	]], [[
+ 	#if BOOST_VERSION >= $WANT_BOOST_VERSION
+ 	// Everything is okay
+@@ -184,7 +184,7 @@
+ 
+ 		AC_LANG_PUSH(C++)
+ 	     	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+-		@%:@include <boost/version.hpp>
++		@%:@include <boost141/boost/version.hpp>
+ 		]], [[
+ 		#if BOOST_VERSION >= $WANT_BOOST_VERSION
+ 		// Everything is okay

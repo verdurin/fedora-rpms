@@ -1,0 +1,24 @@
+diff -ur cufflinks-1.0.1/ax_bam.m4 cufflinks-1.0.1.new/ax_bam.m4
+--- cufflinks-1.0.1/ax_bam.m4	2010-10-11 20:25:39.000000000 +0100
++++ cufflinks-1.0.1.new/ax_bam.m4	2011-05-08 13:27:04.167154146 +0100
+@@ -102,7 +102,7 @@
+ 
+ 	AC_LANG_PUSH(C++)
+      	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+-	@%:@include <bam/bam.h>
++	@%:@include <samtools/bam.h>
+ 	]], [[
+ 	]])],[
+         AC_MSG_RESULT(yes)
+diff -ur cufflinks-1.0.1/src/hits.h cufflinks-1.0.1.new/src/hits.h
+--- cufflinks-1.0.1/src/hits.h	2011-05-04 21:17:32.000000000 +0100
++++ cufflinks-1.0.1.new/src/hits.h	2011-05-08 13:45:44.515932865 +0100
+@@ -16,7 +16,7 @@
+ 
+ #include <boost/shared_ptr.hpp>
+ 
+-#include <bam/sam.h>
++#include <samtools/sam.h>
+ 
+ #include "common.h"
+ #include "multireads.h"

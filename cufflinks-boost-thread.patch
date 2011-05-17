@@ -1,0 +1,13 @@
+--- cufflinks-1.0.1/ax_boost_thread.m4	2010-10-11 20:25:39.000000000 +0100
++++ cufflinks-1.0.1.new/ax_boost_thread.m4	2011-05-08 14:30:16.200128983 +0100
+@@ -98,6 +98,10 @@
+                         case "x$build_os" in
+                           *bsd* )
+                                LDFLAGS="-pthread $LDFLAGS"
++			  break;
++			  ;;
++			  *linux* )
++                               BOOST_LDFLAGS="-lpthread -lboost_thread-mt $BOOST_LDFLAGS"
+                           break;
+                           ;;
+                         esac

@@ -1,13 +1,13 @@
 Name:		vcftools
 Version:	0.1.5
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	VCF file manipulation tools
 
 Group:		Applications/Engineering
 License:	GPLv3 
 URL:		http://vcftools.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}_%{version}.tar.gz
-Patch0:		perl-makefile-vcfstats.patch
+Patch0:		vcftools-perl-makefile.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	zlib-devel
@@ -29,17 +29,11 @@ make %{?_smp_mflags} CPPFLAGS="%{optflags}"
 
 %install
 rm -rf %{buildroot}
-make install PREFIX=%{buildroot}/usr
+make install PREFIX=%{buildroot}/usr MODDIR="%{buildroot}/%{perl_vendorarch}" \
+BINDIR="%{buildroot}/%{_bindir}"
 
-# Put Perl modules in correct location
-mkdir -p %{buildroot}/%{perl_vendorarch}
-mv %{buildroot}/usr/lib/FaSlice.pm %{buildroot}/%{perl_vendorarch}
-mv %{buildroot}/usr/lib/Vcf.pm %{buildroot}/%{perl_vendorarch}
-mv %{buildroot}/usr/lib/VcfStats.pm %{buildroot}/%{perl_vendorarch}
+install -m 0775 %{_builddir}/%{name}_%{version}/cpp/vcftools %{buildroot}/%{_bindir}
 
-# Put single binary in correct location
-mkdir -p %{buildroot}/%{_bindir}
-mv %{_builddir}/%{name}_%{version}/cpp/vcftools %{buildroot}/%{_bindir}
 
 %clean
 rm -rf %{buildroot}
@@ -63,12 +57,18 @@ rm -rf %{buildroot}
 %{_bindir}/vcf-subset
 %{_bindir}/vcf-to-tab
 %{_bindir}/vcf-validator
-%{_bindir}/vcftools
+%attr(0755, root, root) %{_bindir}/vcftools
 %{perl_vendorarch}/FaSlice.pm
 %{perl_vendorarch}/Vcf.pm
 %{perl_vendorarch}/VcfStats.pm
 
 %changelog
+* Tue May  3 2011 Adam Huffman <bloch@verdurin.com> - 0.1.5-2
+- minor fix to Jack's Perl patch
+- permissions fix
+- hardcoded path fix
+- cleaner Makefile fix
+
 * Sun May 1 2011 Jack Tanner <ihok@hotmail.com> - 0.1.5-1
 - bump to 0.1.5
 - rename compare-vcf, merge-vcf, and query-vcf to vcf-compare,
