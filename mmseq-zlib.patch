@@ -1,0 +1,11 @@
+--- mmseq_0.9.10b/Makefile	2011-05-04 02:18:37.000000000 +0100
++++ mmseq_0.9.10b.new/Makefile	2011-05-27 15:01:23.541812023 +0100
+@@ -6,7 +6,7 @@
+ CC = gcc
+ CXX = g++
+ LIBS = -lgsl -lgslcblas 
+-LIBS_B2H = -lboost_regex -lbam -lz
++LIBS_B2H = -lboost_regex -lbam -Wl,--as-needed -lz
+ 
+ HPC_INCLUDE = -I /apps/boost/1.36.0/include -I /apps/gsl/1.8/include -L /apps/gsl/1.8/lib -I /home/et04/samtools
+ HPC_LIB = -L /apps/boost/1.36.0/lib -L /apps/gsl/1.8/lib -L /home/et04/samtools

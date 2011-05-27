@@ -1,0 +1,27 @@
+diff -ur mmseq_0.9.9/Makefile mmseq_0.9.9.new/Makefile
+--- mmseq_0.9.9/Makefile	2011-03-18 00:25:53.000000000 +0000
++++ mmseq_0.9.9.new/Makefile	2011-04-09 16:46:16.445406767 +0100
+@@ -26,19 +26,19 @@
+ .PHONY : all
+ 
+ mmseq : sokal.o mmseq.cpp
+-	$(CXX) ${MACROS} -fopenmp -O3 sokal.o mmseq.cpp -o mmseq ${LIBS}
++	$(CXX) ${MACROS} $(CXXFLAGS) -fopenmp sokal.o mmseq.cpp -o mmseq ${LIBS}
+ 
+ static: sokal.o mmseq.cpp
+ 	$(CXX) ${MACROS} ${STATICFLAG} -fopenmp -O3 sokal.o mmseq.cpp -o ${STATICBIN} ${STATICLIBS}
+ 
+ sokal.o : sokal.cc sokal.hh
+-	$(CXX) -c sokal.cc
++	$(CXX) $(CXXFLAGS) -c sokal.cc
+ 
+ fasta.o : fasta.c fasta.h
+-	$(CC) -c fasta.c
++	$(CC) $(CXXFLAGS) -c fasta.c
+ 
+ bam2hits : fasta.o bam2hits.cpp
+-	${CXX} ${MACROS} -fopenmp -O3 fasta.o bam2hits.cpp -o bam2hits ${LIBS_B2H}
++	${CXX} ${MACROS} $(CXXFLAGS) -fopenmp fasta.o bam2hits.cpp -o bam2hits ${LIBS_B2H}
+ 
+ hpc : mmseq_hpc bam2hits_hpc
+ .PHONY : all
