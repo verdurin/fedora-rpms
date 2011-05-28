@@ -1,6 +1,6 @@
 Name:		mmseq
-Version:	0.9.10b
-Release:	3%{?dist}
+Version:	0.9.11
+Release:	1%{?dist}
 Summary:	Haplotype and isoform specific expression estimation for RNA-seq
 
 Group:		Applications/Engineering
@@ -63,14 +63,20 @@ rm -rf %{buildroot}
 %{_bindir}/mmseq
 %{_bindir}/fastagrep.sh
 %{_bindir}/pileup.sh
+%{_bindir}/routeB.sh
 %{_bindir}/filterGTF.rb
 %{_bindir}/get_isize.rb
 %{_bindir}/haploref.rb
-%{_bindir}/sam2hits.rb
 %{_bindir}/testregexp.rb
 %{_bindir}/ensembl_gtf_to_gff.pl
 
+
 %changelog
+* Sat May 28 2011 Adam Huffman <bloch@verdurin.com> - 0.9.11-1
+- new upstream release
+- add routeB.sh script
+- sam2hits.rb removed
+
 * Fri May 27 2011 Adam Huffman <bloch@verdurin.com> - 0.9.10b-3
 - patch to deal with zlib better
 
