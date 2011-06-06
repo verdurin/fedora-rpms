@@ -1,0 +1,9 @@
+diff -ur mmseq_0.9.9/bam2hits.cpp mmseq_0.9.9.new/bam2hits.cpp
+--- mmseq_0.9.9/bam2hits.cpp	2011-03-18 00:27:28.000000000 +0000
++++ mmseq_0.9.9.new/bam2hits.cpp	2011-04-04 17:45:39.732106154 +0100
+@@ -1,4 +1,4 @@
+-#include "sam.h"
++#include <samtools/sam.h>
+ #include <iostream>
+ #include <fstream>
+ #include <string>

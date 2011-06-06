@@ -1,6 +1,6 @@
 Name:		mmseq
-Version:	0.9.10b
-Release:	2%{?dist}
+Version:	0.9.11
+Release:	1%{?dist}
 Summary:	Haplotype and isoform specific expression estimation for RNA-seq
 
 Group:		Applications/Engineering
@@ -9,6 +9,7 @@ URL:		http://www.bgx.org.uk/software/mmseq.html
 Source0:	http://www.bgx.org.uk/software/%{name}_%{version}.zip
 Patch0:		mmseq-sam-header.patch
 Patch1:		mmseq-flags.patch
+Patch2:		mmseq-zlib.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	boost-devel
@@ -30,6 +31,8 @@ estimation using multi-mapping RNA-seq reads.  Example scripts are included.
 %patch0 -p1 -b .mmseq-sam-header.patch
 #Use Fedora compilation headers
 %patch1 -p1 -b .mmseq-flags.patch
+#Fix zlib linking
+%patch2 -p1 -b .mmseq-zlib.patch
 
 #Remove bundled binaries
 rm bam2hits*-x86_64
@@ -60,14 +63,23 @@ rm -rf %{buildroot}
 %{_bindir}/mmseq
 %{_bindir}/fastagrep.sh
 %{_bindir}/pileup.sh
+%{_bindir}/routeB.sh
 %{_bindir}/filterGTF.rb
 %{_bindir}/get_isize.rb
 %{_bindir}/haploref.rb
-%{_bindir}/sam2hits.rb
 %{_bindir}/testregexp.rb
 %{_bindir}/ensembl_gtf_to_gff.pl
 
+
 %changelog
+* Sat May 28 2011 Adam Huffman <bloch@verdurin.com> - 0.9.11-1
+- new upstream release
+- add routeB.sh script
+- sam2hits.rb removed
+
+* Fri May 27 2011 Adam Huffman <bloch@verdurin.com> - 0.9.10b-3
+- patch to deal with zlib better
+
 * Sun May 15 2011 Adam Huffman <bloch@verdurin.com> - 0.9.10b-2
 - remove bundled binaries
 - remove VERSION
