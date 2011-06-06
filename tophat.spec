@@ -29,26 +29,12 @@ Cell Biology.
 %prep
 %setup -q
 %patch0 -p1 -b .tophat-sam-header.patch
-#Fix incorrect permissions and line-endings
-#dos2unix src/SeqAn-1.1/seqan/modifier/modifier_reverse.h
-#dos2unix src/SeqAn-1.1/seqan/modifier/modifier_view.h
-#dos2unix src/SeqAn-1.1/seqan/modifier/modifier_functors.h
-#dos2unix src/SeqAn-1.1/seqan/modifier/modifier_string.h
-#dos2unix src/SeqAn-1.1/seqan/modifier/modifier_shortcuts.h
-#dos2unix src/SeqAn-1.1/seqan/modifier/modifier_iterator.h
 
-#chmod -x src/align_status.h
-#chmod -x src/deletions.cpp
-#chmod -x src/SeqAn-1.1/seqan/modifier/modifier_functors.h
-#chmod -x src/SeqAn-1.1/seqan/modifier/modifier_string.h
-#chmod -x src/deletions.h
-#chmod -x src/align_status.cpp
-#chmod -x src/SeqAn-1.1/seqan/modifier/modifier_shortcuts.h
-#chmod -x src/insertions.cpp
-#chmod -x src/SeqAn-1.1/seqan/modifier/modifier_iterator.h
-#chmod -x src/insertions.h
-#chmod -x src/SeqAn-1.1/seqan/modifier/modifier_reverse.h
-#chmod -x src/SeqAn-1.1/seqan/modifier/modifier_view.h
+#Fix bad permissions
+chmod -x src/align_status.*
+chmod -x src/deletions.*
+chmod -x src/insertions.*
+
 
 %build
 autoreconf
