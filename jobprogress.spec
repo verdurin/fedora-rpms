@@ -1,21 +1,22 @@
 # sitelib for noarch packages, sitearch for others (remove the unneeded one)
-%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
+%{!?python_sitelib: %global python3_sitelib %(%{__python3} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
 
 
-Name:           jobprogress
-Version:        1.0.1
-Release:        1%{?dist}
-Summary:        Cross-toolkit task progression reporting for GUIs
+Name:		    jobprogress
+Version:	    1.0.1
+Release:	    1%{?dist}
+Summary:	    Cross-toolkit task progression reporting for GUIs
 
-Group:          Development/Languages
-License:        Freely redistributable
-URL:            http://hg.hardcoded.net/jobprogress
-#Source0:	http://hg.hardcoded.net/jobprogress/get/1.0.1.tar.bz2
-Source0:        hsoft-jobprogress-66056f6d1e00.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Group:		    Development/Languages
+License:	    Redistributable, no modification permitted
+URL:		    http://hg.hardcoded.net/jobprogress
+#Source0:	    http://hg.hardcoded.net/jobprogress/get/1.0.1.tar.bz2
+Source0:	    hsoft-jobprogress-66056f6d1e00.tar.bz2
+BuildRoot:	    %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildArch:      noarch
-BuildRequires:  python3-devel
+BuildArch:	    noarch
+BuildRequires:	    python3-devel
+BuildRequires:	    python3-setuptools
 
 %description
 
@@ -40,12 +41,12 @@ pretty thin, so it should be easy to add new toolkits.
 
 
 %build
-%{__python} setup.py build
+%{__python3} setup.py build
 
 
 %install
 rm -rf %{buildroot}
-%{__python} setup.py install -O1 --skip-build --root %{buildroot}
+%{__python3} setup.py install -O1 --skip-build --root %{buildroot}
 
  
 %clean
@@ -56,7 +57,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %doc LICENSE README CHANGES
 # For noarch packages: sitelib
-%{python_sitelib}/*
+%{python3_sitelib}/*
 
 
 %changelog
