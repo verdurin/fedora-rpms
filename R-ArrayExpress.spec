@@ -4,7 +4,7 @@
 
 Name:             R-%{packname}
 Version:          1.12.0
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Access the arrayexpress microarray database at ebi and b
 
 Group:            Applications/Engineering 
@@ -15,7 +15,7 @@ BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:        noarch
 Requires:         R-core
 
-Requires:         R >= 2.9.0 R-Biobase >= 2.4.0 
+Requires:         R >= 2.9.0 R-Biobase >= 2.4.0 R-affy R-limma
 
 BuildRequires:    R-devel tex(latex) R >= 2.9.0 R-Biobase >= 2.4.0 R-XML R-affy R-limma 
 
@@ -56,5 +56,8 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Jun 15 2011 Adam Huffman <bloch@verdurin.com> - 1.12.0-2
+- add reqs for limma and affy
+
 * Wed Apr 20 2011 Adam Huffman <bloch@verdurin.com> 1.12.0-1
 - initial package for Fedora

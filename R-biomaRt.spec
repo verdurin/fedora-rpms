@@ -4,7 +4,7 @@
 
 Name:             R-%{packname}
 Version:          2.8.0
-Release:          1%{?dist}
+Release:          4%{?dist}
 Summary:          Interface to biomart databases (e.g. ensembl, cosmic ,wo
 
 Group:            Applications/Engineering 
@@ -16,8 +16,8 @@ BuildArch:        noarch
 Requires:         R-core
 
 Requires:         R-methods 
-Requires:         R-annotate 
-BuildRequires:    R-devel tex(latex) R-methods R-annotate
+Requires:         R-annotate R-RCurl
+BuildRequires:    R-devel tex(latex) R-methods R-annotate R-RCurl
 
 %description
 In recent years a wealth of biological data has become available in public
@@ -57,14 +57,23 @@ rm -rf %{buildroot}
 %doc %{rlibdir}/%{packname}/doc
 %doc %{rlibdir}/%{packname}/html
 %doc %{rlibdir}/%{packname}/DESCRIPTION
-%doc %{rlibdir}/%{packname}/NEWS
 %{rlibdir}/%{packname}/INDEX
 %{rlibdir}/%{packname}/NAMESPACE
 %{rlibdir}/%{packname}/Meta
 %{rlibdir}/%{packname}/R
 %{rlibdir}/%{packname}/help
-
+%{rlibdir}/%{packname}/scripts
 
 %changelog
+* Wed Jun 15 2011 Adam Huffman <bloch@verdurin.com> - 2.8.0-4
+- proper RCurl fix
+
+* Wed Jun 15 2011 Adam Huffman <bloch@verdurin.com> - 2.8.0-3
+- add reqs for RCurl
+
+* Tue May 10 2011 Adam Huffman <bloch@verdurin.comk> - 2.8.0-2
+- add R-RCurl BR
+- add scripts directory
+
 * Wed Apr 20 2011 Adam Huffman <bloch@verdurin.com> 2.8.0-1
 - initial package for Fedora

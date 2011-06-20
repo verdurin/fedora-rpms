@@ -4,7 +4,7 @@
 
 Name:             R-%{packname}
 Version:          1.5.0
-Release:          1%{?dist}
+Release:          3%{?dist}
 Summary:          Digital gene expresion analysis based on the negative bi
 
 Group:            Applications/Engineering 
@@ -13,7 +13,7 @@ URL:              http://bioconductor.org/packages/release/bioc/html/DESeq.html
 Source0:          http://bioconductor.org/packages/release/bioc/src/contrib/%{packname}_%{version}.tar.gz
 BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Requires:         R-Biobase R-locfit 
+Requires:         R-Biobase R-locfit R-genefilter R-geneplotter
 
 BuildRequires:    R-devel tex(latex) R-Biobase R-locfit R-genefilter R-geneplotter
 BuildRequires:	  R-xtable R-RColorBrewer
@@ -58,5 +58,11 @@ rm -rf %{buildroot}
 %{rlibdir}/%{packname}/extra
 
 %changelog
+* Wed Jun 15 2011 Adam Huffman <bloch@verdurin.com> - 1.5.0-3
+- add geneplotter reqs
+
+* Wed Jun 15 2011 Adam Huffman <bloch@verdurin.com> - 1.5.0-2
+- add req for genefilter
+
 * Tue Apr 19 2011 Adam Huffman <bloch@verdurin.com> 1.5.0-1
 - initial package for Fedora
