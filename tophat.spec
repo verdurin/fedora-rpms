@@ -1,6 +1,6 @@
 Name:		tophat
-Version:	1.2.0
-Release:	2%{?dist}
+Version:	1.3.0
+Release:	1%{?dist}
 Summary:	A spliced read mapper for RNA-Seq
 
 Group:		Applications/Engineering
@@ -29,26 +29,12 @@ Cell Biology.
 %prep
 %setup -q
 %patch0 -p1 -b .tophat-sam-header.patch
-#Fix incorrect permissions and line-endings
-dos2unix src/SeqAn-1.1/seqan/modifier/modifier_reverse.h
-dos2unix src/SeqAn-1.1/seqan/modifier/modifier_view.h
-dos2unix src/SeqAn-1.1/seqan/modifier/modifier_functors.h
-dos2unix src/SeqAn-1.1/seqan/modifier/modifier_string.h
-dos2unix src/SeqAn-1.1/seqan/modifier/modifier_shortcuts.h
-dos2unix src/SeqAn-1.1/seqan/modifier/modifier_iterator.h
 
-chmod -x src/align_status.h
-chmod -x src/deletions.cpp
-chmod -x src/SeqAn-1.1/seqan/modifier/modifier_functors.h
-chmod -x src/SeqAn-1.1/seqan/modifier/modifier_string.h
-chmod -x src/deletions.h
-chmod -x src/align_status.cpp
-chmod -x src/SeqAn-1.1/seqan/modifier/modifier_shortcuts.h
-chmod -x src/insertions.cpp
-chmod -x src/SeqAn-1.1/seqan/modifier/modifier_iterator.h
-chmod -x src/insertions.h
-chmod -x src/SeqAn-1.1/seqan/modifier/modifier_reverse.h
-chmod -x src/SeqAn-1.1/seqan/modifier/modifier_view.h
+#Fix bad permissions
+chmod -x src/align_status.*
+chmod -x src/deletions.*
+chmod -x src/insertions.*
+
 
 %build
 autoreconf
@@ -73,6 +59,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Jun  6 2011 Adam Huffman <bloch@verdurin.com> - 1.3.0-1
+- new upstream release
+
 * Wed May 18 2011 Adam Huffman <bloch@verdurin.com> - 1.2.0-2
 - remove Make smp flags to fix build
 - fix permissions and file format problems

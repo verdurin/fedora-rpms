@@ -1,6 +1,6 @@
 Name:		boost141-cufflinks
-Version:	1.0.1
-Release:	2%{?dist}
+Version:	1.0.3
+Release:	1%{?dist}
 Summary:	RNA-Seq transcript assembly, differential expression/regulation
 
 Group:		Applications/Engineering
@@ -32,7 +32,7 @@ for Bioinformatics and Computational Biology, and Barbara Wold's lab
 at Caltech.
 
 %prep
-%setup -q -n cufflinks-1.0.1
+%setup -q -n cufflinks-%{version}
 #Look for BAM headers in the correct Fedora location
 %patch0 -p1 -b .cufflinks-bam-header.patch
 %patch1 -p1 -b .cufflinks-boost-thread.patch
@@ -65,6 +65,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Jun  6 2011 Adam Huffman <bloch@verdurin.com> - 1.0.3-1
+- new upstream release
+
 * Tue May 17 2011 Adam Huffman <bloch@verdurin.com> - 1.0.1-2
 - separate version for EPEL Boost
 - new patch for EPEL Boost 141 headers
