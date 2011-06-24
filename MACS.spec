@@ -7,16 +7,17 @@ Version:	    1.4.0
 Release:	    1%{?dist}
 Summary:	    Model-based Analysis for ChIP-Seq
 
-Group:              Applications/Engineering
-License:            Artistic 2.0
+Group:		    Applications/Engineering
+License:	    Artistic 2.0
 URL:		    http://liulab.dfci.harvard.edu/MACS/index.html
 #Source now available on Github
-#Source0:        https://github.com/taoliu/MACS/tarball/v1.4.0
-Source0:	taoliu-MACS-v1.4.0-0-g7afa97a.tar.gz 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+#Source0:   https://github.com/taoliu/MACS/tarball/v1.4.0
+Source0:	    taoliu-MACS-v1.4.0-0-g7afa97a.tar.gz 
+BuildRoot:	    %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildArch:	noarch
-BuildRequires:	python-devel
+BuildArch:	    noarch
+BuildRequires:	    python2-devel
+
 
 %description
 
@@ -46,7 +47,10 @@ ChIP-Seq with or without control samples.
 rm -rf %{buildroot}
 
 %{__python} setup.py install -O1 --skip-build --root %{buildroot}
- 
+
+mkdir -p %{buildroot}/%{_mandir}/man1
+install -m 0644 DEBIAN/macs.man %{buildroot}/%{_mandir}/man1/macs.1
+
 %clean
 rm -rf %{buildroot}
 
@@ -54,6 +58,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %doc README ChangeLog COPYING NEW_IN_MACS14 TODO
+%{_mandir}/man1/macs.1*
 %{python_sitelib}/*
 %{_bindir}/macs14
 %{_bindir}/eland*
@@ -61,6 +66,9 @@ rm -rf %{buildroot}
 %{_bindir}/wignorm
 
 %changelog
+* Fri Jun 24 2011 Adam Huffman <bloch@verdurin.com> - 1.4.0-1
+- add manpage generated for Debian
+
 * Tue Jun 21 2011 Adam Huffman <bloch@verdurin.com> - 1.4.0-1
 - final 1.4.0 release
 - see https://raw.github.com/taoliu/MACS/v1.4.0/ChangeLog
