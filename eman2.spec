@@ -1,6 +1,9 @@
+#Upstream prefers packaging in a single directory
+%global	  %{_prefix}	    /opt/EMAN2
+
 Name:           eman2
 Version:        2.02
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Single particle EM analysis
 
 Group:          Applications/Engineering
@@ -13,7 +16,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  cmake zlib-devel python-devel libpng-devel fftw3-devel
 BuildRequires:	hdf5-devel gsl-devel libtiff-devel libjpeg-devel
 
-BuildRequires: qt-devel boost141-devel
+BuildRequires:	qt-devel boost141-devel
 
 BuildRequires:	numpy
 
@@ -55,8 +58,8 @@ developing applications that use %{name}.
 
 cd src/build
 %cmake ../eman2 
+#make VERBOSE=1 %{?_smp_mflags} DESTDIR=%{buildroot}
 make VERBOSE=1 %{?_smp_mflags} DESTDIR=%{buildroot}
-
 
 %install
 rm -rf %{buildroot}
@@ -64,27 +67,36 @@ cd src/build
 make install DESTDIR=%{buildroot}
 
 # separate files installed in single hierarchy
+#mkdir -p %{buildroot}%{_bindir}
+#mkdir -p %{buildroot}%{_libdir}/%{name}
+#mkdir -p %{buildroot}%{_datadir}/%{name}/examples
+#mkdir -p %{buildroot}%{_datadir}/%{name}/images
+#mkdir -p %{buildroot}%{_includedir}/%{name}
+#mkdir -p %{buildroot}%{_docdir}/%{name}
+
+# separate files installed in single hierarchy
 mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_libdir}/%{name}
-mkdir -p %{buildroot}%{_datadir}/%{name}/examples
-mkdir -p %{buildroot}%{_datadir}/%{name}/images
-mkdir -p %{buildroot}%{_includedir}/%{name}
-mkdir -p %{buildroot}%{_docdir}/%{name}
+mkdir -p %{buildroot}%{_libdir}/
+mkdir -p %{buildroot}%{_datadir}/examples
+mkdir -p %{buildroot}opt/%{_datadir}/%{name}/images
+mkdir -p %{buildroot}opt/%{_includedir}/%{name}
+mkdir -p %{buildroot}opt/%{_docdir}/%{name}
 
-install  -m 0755 %{buildroot}/builddir/EMAN2/bin/* %{buildroot}%{_bindir}
 
-cp -dpr %{buildroot}/builddir/EMAN2/include/* %{buildroot}%{_includedir}/%{name}
+#install  -m 0755 %{buildroot}/builddir/EMAN2/bin/* %{buildroot}%{_bindir}
 
-install -m 0755 %{buildroot}/builddir/EMAN2/examples/* %{buildroot}%{_datadir}/%{name}/examples/
+#cp -dpr %{buildroot}/builddir/EMAN2/include/* %{buildroot}%{_includedir}/%{name}
 
-cp -dpr %{buildroot}/builddir/EMAN2/images/* %{buildroot}%{_datadir}/%{name}/images/
+#install -m 0755 %{buildroot}/builddir/EMAN2/examples/* %{buildroot}%{_datadir}/%{name}/examples/
 
-cp -dpr %{buildroot}/builddir/EMAN2/doc %{buildroot}%{_defaultdocdir}/%{name}-%{version}/ 
+#cp -dpr %{buildroot}/builddir/EMAN2/images/* %{buildroot}%{_datadir}/%{name}/images/
 
-cp -dpr %{buildroot}/builddir/EMAN2/lib/* %{buildroot}%{_libdir}/%{name}
-chmod 0755 %{buildroot}%{_libdir}/%{name}
+#cp -dpr %{buildroot}/builddir/EMAN2/doc %{buildroot}%{_defaultdocdir}/%{name}-%{version}/ 
 
-rm -rf %{buildroot}/builddir/EMAN2
+#cp -dpr %{buildroot}/builddir/EMAN2/lib/* %{buildroot}%{_libdir}/%{name}
+#chmod 0755 %{buildroot}%{_libdir}/%{name}
+
+#rm -rf %{buildroot}/builddir/EMAN2
 
 
 
@@ -110,6 +122,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Jun 20 2011 Adam Huffman <bloch@verdurin.com> - 2.02-2
+- use upstream single directory layout
+
 * Fri Jun 17 2011 Adam Huffman <bloch@verdurin.com> - 2.02-1
 - new upstream release 2.02
 - add patch for boost141 headers on EPEL5

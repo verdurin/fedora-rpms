@@ -2,19 +2,21 @@
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
 
 
-Name:           MACS
-Version:        1.4.0
-Release:        0.1.rc2%{?dist}
-Summary:        Model-based Analysis for ChIP-Seq
+Name:		    MACS
+Version:	    1.4.0
+Release:	    1%{?dist}
+Summary:	    Model-based Analysis for ChIP-Seq
 
-Group:          Development/Languages
-License:        Artistic 2.0
-URL:            http://liulab.dfci.harvard.edu/MACS/index.html
-Source0:        http://liulab.dfci.harvard.edu/MACS/src/MACS-1.4.0rc2.tar.gz
+Group:              Applications/Engineering
+License:            Artistic 2.0
+URL:		    http://liulab.dfci.harvard.edu/MACS/index.html
+#Source now available on Github
+#Source0:        https://github.com/taoliu/MACS/tarball/v1.4.0
+Source0:	taoliu-MACS-v1.4.0-0-g7afa97a.tar.gz 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildArch:      noarch
-BuildRequires:  python-devel
+BuildArch:	noarch
+BuildRequires:	python-devel
 
 %description
 
@@ -34,7 +36,7 @@ algorithms, is publicly available open source, and can be used for
 ChIP-Seq with or without control samples.
 
 %prep
-%setup -q -n MACS-1.4.0rc2
+%setup -q -n taoliu-MACS-b52dbe1
 
 
 %build
@@ -51,7 +53,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc 00README ChangeLog COPYING
+%doc README ChangeLog COPYING NEW_IN_MACS14 TODO
 %{python_sitelib}/*
 %{_bindir}/macs14
 %{_bindir}/eland*
@@ -59,6 +61,10 @@ rm -rf %{buildroot}
 %{_bindir}/wignorm
 
 %changelog
+* Tue Jun 21 2011 Adam Huffman <bloch@verdurin.com> - 1.4.0-1
+- final 1.4.0 release
+- see https://raw.github.com/taoliu/MACS/v1.4.0/ChangeLog
+
 * Thu Apr 21 2011 Adam Huffman <bloch@verdurin.com> - 1.4.0-0.1.rc2
 - new upstream release
 - new binary names
