@@ -1,0 +1,50 @@
+diff -ur EMAN2/src/eman2/CMakeLists.txt EMAN2.test/src/eman2/CMakeLists.txt
+--- EMAN2/src/eman2/CMakeLists.txt	2011-04-29 18:10:05.000000000 +0100
++++ EMAN2.test/src/eman2/CMakeLists.txt	2011-06-17 10:53:06.659178755 +0100
+@@ -175,6 +175,7 @@
+ 	/usr/local/cuda/include
+ 	/Developer/SDKs/MacOSX10.5.sdk/usr/X11/include
+ 	/usr/include 
++	/usr/include/boost141
+ 	/sw/include
+ 	/usr/include/freetype2
+ 	)
+@@ -188,6 +189,7 @@
+ 	/usr/local/lib
+ 	/usr/local/cuda/lib
+ 	/usr/lib64 
++	/usr/lib64/boost141
+ 	/usr/lib 
+ 	/sw/lib
+ 	)
+@@ -204,10 +206,10 @@
+ 		FIND_LIBRARY(${upper}_LIBRARY NAMES ${lower} ${lower2} PATHS $ENV{${upper}DIR}/lib ${LIB_DIRS})		
+ 		IF(${upper}_LIBRARY)
+ 		ELSE(${upper}_LIBRARY)
+-			MESSAGE(SEND_ERROR "ERROR: ${upper} not found. please install ${upper} first!")
++			MESSAGE(SEND_ERROR "ERROR1: ${upper} not found. please install ${upper} first!")
+ 		ENDIF(${upper}_LIBRARY)
+     ELSE(${upper}_INCLUDE_PATH)
+-		MESSAGE(SEND_ERROR "ERROR: ${upper} not found. please install ${upper} first!")
++		MESSAGE(SEND_ERROR "ERROR2: ${upper} not found. please install ${upper} first!")
+     ENDIF(${upper}_INCLUDE_PATH)
+ ENDMACRO(CHECK_REQUIRED_LIB2)
+ 
+@@ -453,7 +455,7 @@
+ 
+ IF(PYTHON_INCLUDE_PATH)
+     # Check the most generic name first (used by cctbx).
+-    CHECK_REQUIRED_LIB(BOOST boost_python boost/python.hpp)
++    CHECK_REQUIRED_LIB(BOOST141 boost_python boost/python.hpp)
+ ELSE(PYTHON_INCLUDE_PATH)
+     MESSAGE("ERROR: Python.h not found")
+ ENDIF(PYTHON_INCLUDE_PATH)
+@@ -469,7 +471,7 @@
+ 	    ${FFTW_INCLUDE_PATH}
+ 	    ${DJBFFT_INCLUDE_PATH}
+ 	    ${ACML_INCLUDE_PATH}
+-	    ${BOOST_INCLUDE_PATH}
++	    ${BOOST141_INCLUDE_PATH}
+ 	    ${PYTHON_INCLUDE_PATH}
+ 	    ${FREETYPE_INCLUDE_PATH}		
+             )
