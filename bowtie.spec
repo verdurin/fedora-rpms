@@ -1,13 +1,14 @@
-Name:           bowtie
-Version:        0.12.7
-Release:        1%{?dist}
-Summary:        An ultrafast, memory-efficient short read aligner
+Name:		bowtie
+Version:	0.12.7
+Release:	2%{?dist}
+Summary:	An ultrafast, memory-efficient short read aligner
 
-Group:          Applications/Engineering
-License:        Artistic 2.0
-URL:            http://bowtie-bio.sourceforge.net/index.shtml
-Source0:        http://downloads.sourceforge.net/%{name}-bio/%{name}-%{version}-src.zip
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Group:		Applications/Engineering
+License:	Artistic 2.0
+URL:		http://bowtie-bio.sourceforge.net/index.shtml
+Source0:	http://downloads.sourceforge.net/%{name}-bio/%{name}-%{version}-src.zip
+Patch0:		%{name}-script-shebang.patch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 
 %description
@@ -20,6 +21,7 @@ sequences to the human genome. Genome Biol 10:R25.
 %prep
 %setup -q
 
+%patch0 -p1 
 
 %build
 make %{?_smp_mflags} -p EXTRA_FLAGS="%{optflags}"
@@ -48,7 +50,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc MANUAL NEWS VERSION AUTHORS TUTORIAL
+%doc MANUAL NEWS VERSION AUTHORS TUTORIAL doc/
 %dir %{_datadir}/bowtie
 %{_bindir}/bowtie
 %{_bindir}/bowtie-build
@@ -59,6 +61,10 @@ rm -rf %{buildroot}
 %{_datadir}/bowtie/scripts
 
 %changelog
+* Mon Jun 27 2011 Adam Huffman <bloch@verdurin.com> - 0.12.7-2
+- add missing doc/ 
+- add patch to fix Perl script without shebang
+
 * Mon Sep 13 2010 Adam Huffman <bloch@verdurin.com> - 0.12.7-1
 - new upstream release 0.12.7
 - changelog at http://bowtie-bio.sourceforge.net/index.shtml
