@@ -1,7 +1,8 @@
 #Upstream prefers packaging in a single directory
-%global	  %{_prefix}	    /opt/EMAN2
+#%global	  %{_prefix}	    /opt/EMAN2
+%{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
 
-Name:           eman2
+Name:           EMAN2
 Version:        2.02
 Release:        2%{?dist}
 Summary:        Single particle EM analysis
@@ -16,7 +17,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  cmake zlib-devel python-devel libpng-devel fftw3-devel
 BuildRequires:	hdf5-devel gsl-devel libtiff-devel libjpeg-devel
 
-BuildRequires:	qt-devel boost141-devel
+BuildRequires:	qt-devel boost-devel
 
 BuildRequires:	numpy
 
@@ -67,36 +68,37 @@ cd src/build
 make install DESTDIR=%{buildroot}
 
 # separate files installed in single hierarchy
-#mkdir -p %{buildroot}%{_bindir}
-#mkdir -p %{buildroot}%{_libdir}/%{name}
-#mkdir -p %{buildroot}%{_datadir}/%{name}/examples
-#mkdir -p %{buildroot}%{_datadir}/%{name}/images
-#mkdir -p %{buildroot}%{_includedir}/%{name}
-#mkdir -p %{buildroot}%{_docdir}/%{name}
+mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_libdir}/%{name}
+mkdir -p %{buildroot}%{_datadir}/%{name}/examples
+mkdir -p %{buildroot}%{_datadir}/%{name}/images
+mkdir -p %{buildroot}%{_includedir}/%{name}
+mkdir -p %{buildroot}%{_docdir}/%{name}
+mkdir -p %{buildroot}/%{python_sitearch}/%{name}
 
 # separate files installed in single hierarchy
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_libdir}/
-mkdir -p %{buildroot}%{_datadir}/examples
-mkdir -p %{buildroot}opt/%{_datadir}/%{name}/images
-mkdir -p %{buildroot}opt/%{_includedir}/%{name}
-mkdir -p %{buildroot}opt/%{_docdir}/%{name}
+#mkdir -p %{buildroot}%{_bindir}
+#mkdir -p %{buildroot}%{_libdir}/
+#mkdir -p %{buildroot}%{_datadir}/examples
+#mkdir -p %{buildroot}opt/%{_datadir}/%{name}/images
+#mkdir -p %{buildroot}opt/%{_includedir}/%{name}
+#mkdir -p %{buildroot}opt/%{_docdir}/%{name}
 
 
-#install  -m 0755 %{buildroot}/builddir/EMAN2/bin/* %{buildroot}%{_bindir}
+install  -m 0755 %{buildroot}/builddir/EMAN2/bin/* %{buildroot}%{_bindir}
 
-#cp -dpr %{buildroot}/builddir/EMAN2/include/* %{buildroot}%{_includedir}/%{name}
+cp -dpr %{buildroot}/builddir/EMAN2/include/* %{buildroot}%{_includedir}/%{name}
 
-#install -m 0755 %{buildroot}/builddir/EMAN2/examples/* %{buildroot}%{_datadir}/%{name}/examples/
+install -m 0755 %{buildroot}/builddir/EMAN2/examples/* %{buildroot}%{_datadir}/%{name}/examples/
 
-#cp -dpr %{buildroot}/builddir/EMAN2/images/* %{buildroot}%{_datadir}/%{name}/images/
+cp -dpr %{buildroot}/builddir/EMAN2/images/* %{buildroot}%{_datadir}/%{name}/images/
 
-#cp -dpr %{buildroot}/builddir/EMAN2/doc %{buildroot}%{_defaultdocdir}/%{name}-%{version}/ 
+cp -dpr %{buildroot}/builddir/EMAN2/doc %{buildroot}%{_defaultdocdir}/%{name}-%{version}/ 
 
-#cp -dpr %{buildroot}/builddir/EMAN2/lib/* %{buildroot}%{_libdir}/%{name}
-#chmod 0755 %{buildroot}%{_libdir}/%{name}
+cp -dpr %{buildroot}/builddir/EMAN2/lib/* %{buildroot}/%{python_sitearch}/%{name}
+chmod 0755 %{buildroot}%{_libdir}/%{name}
 
-#rm -rf %{buildroot}/builddir/EMAN2
+rm -rf %{buildroot}/builddir/EMAN2
 
 
 
@@ -114,7 +116,7 @@ rm -rf %{buildroot}
 %{_datadir}/%{name}/examples
 %{_datadir}/%{name}/images
 %{_docdir}/%{name}-%{version}/
-%{_libdir}/%{name}
+%{python_sitearch}/*
 
 %files devel
 %defattr(-,root,root,-)
@@ -122,6 +124,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Jun 24 2011 Adam Huffman <bloch@verdurin.com> - 2.02-2
+- fix bad source file permissions
+- fix layout
+
 * Mon Jun 20 2011 Adam Huffman <bloch@verdurin.com> - 2.02-2
 - use upstream single directory layout
 

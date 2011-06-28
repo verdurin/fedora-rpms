@@ -1,5 +1,5 @@
 Name:		tophat
-Version:	1.3.0
+Version:	1.3.1
 Release:	1%{?dist}
 Summary:	A spliced read mapper for RNA-Seq
 
@@ -59,6 +59,13 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Jun 28 2011 Adam Huffman <bloch@verdurin.com> - 1.3.1-1
+- update samtools patch
+
+* Mon Jun 27 2011 Adam Huffman <bloch@verdurin.com> - 1.3.1-1
+- new upstream bugfix release 1.3.1
+- upstream changelog at http://tophat.cbcb.umd.edu/
+
 * Mon Jun  6 2011 Adam Huffman <bloch@verdurin.com> - 1.3.0-1
 - new upstream release
 
