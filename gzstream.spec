@@ -1,19 +1,20 @@
 Name:           gzstream
-Version:        
+Version:	1.5
 Release:        1%{?dist}
-Summary:        
+Summary:        zlib functions in C++ iostream
 
 Group:          System Environment/Libraries
-License:        
-URL:            
-Source0:        
+License:        LGPLv2.1+
+URL:            http://www.cs.unc.edu/Research/compgeom/%{name}/
+Source0:        http://www.cs.unc.edu/Research/compgeom/%{name}/%{name}.tgz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  
-Requires:       
+BuildRequires:  zlib-devel
 
 %description
 
+Gzstream is a small C++ library, basically just a wrapper, that
+provides the functionality of the zlib C-library in a C++ iostream.
 
 %package        devel
 Summary:        Development files for %{name}
@@ -26,19 +27,20 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q
+%setup -q -n gzstream
 
 
 %build
-%configure --disable-static
-make %{?_smp_mflags}
+make default %{?_smp_mflags} CPPFLAGS="%{optflags}" -I.
 
 
 %install
 rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
-find %{buildroot} -name '*.la' -exec rm -f {} ';'
+#make install DESTDIR=%{buildroot}
+#find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
+%check
+make test
 
 %clean
 rm -rf %{buildroot}
@@ -62,3 +64,6 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Jun 30 2011 Adam Huffman <bloch@verdurin.com> - 1.5-1
+- initial version
+
