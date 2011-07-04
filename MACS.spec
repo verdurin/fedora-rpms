@@ -1,3 +1,10 @@
+# Use Python 2.6
+%global pybasever 2.6
+%global __python_ver 26
+%global __python %{_bindir}/python%{?pybasever}
+%global __os_install_post %{?__python%{?__python_ver}_os_install_post}
+
+
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
 
 
@@ -15,7 +22,7 @@ Source0:	    taoliu-MACS-v1.4.1-0-ge7c8efe.tar.gz
 BuildRoot:	    %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:	    noarch
-BuildRequires:	    python2-devel
+BuildRequires:	    python26-devel
 
 
 %description
