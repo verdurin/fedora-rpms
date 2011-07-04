@@ -1,15 +1,15 @@
 %global		buildtemp %{_builddir}/%{name}-%{version}
 
-Name:		seqan
+Name:		SeqAn
 Version:	1.3
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Biological sequence analysis library
 
 Group:		Applications/Engineering
 License:	BSD with advertising
 URL:		http://seqan.de/
 Source0:	http://www.seqan.de/uploads/media/Seqan_Release_%{version}.zip
-Source1:	%{name}-debian-manpages.tar
+Source1:	seqan-debian-manpages.tar
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	python-devel >= 2.5
@@ -29,7 +29,7 @@ software tools with a minimal loss of performance.
 
 %package devel
 Summary: Header files and libraries for compiling against %{name}
-Group:   Development/System
+Group:	 Development/System
 Requires: %name = %version-%release
 
 %description devel
@@ -42,7 +42,7 @@ Header files for compiling against %{name}
 
 #Fix incorrect file encodings
 dos2unix doc/dddoc.js
-dos2unix doc/%{name}-%{version}/README
+dos2unix README
 
 
 %build
@@ -76,9 +76,22 @@ install -p %{buildtemp}/cmake/apps/stellar %{buildroot}%{_bindir}
 install -p %{buildtemp}/cmake/apps/tree_recon %{buildroot}%{_bindir}
 
 mkdir -p %{buildroot}/%{_includedir}/%{name}
-chmod -R -x %{buildtemp}/%{name}
-cp -a %{buildtemp}/%{name} %{buildroot}/%{_includedir}/
-rm %{buildroot}/%{_includedir}/%{name}/LICENSE
+
+chmod 0644 %{buildtemp}/apps/stellar/*
+chmod 0644 %{buildtemp}/apps/rep_sep/*
+chmod 0644 %{buildtemp}/apps/snp_store/*
+chmod 0644 %{buildtemp}/seqan/random/ext_MersenneTwister.h
+chmod 0644 %{buildtemp}/seqan/store/store_io_gff.h
+chmod 0644 %{buildtemp}/seqan/index/shape_threshold.h
+chmod 0644 %{buildtemp}/seqan/graph_align/graph_align_banded_smith_waterman_clump.h
+chmod 0644 %{buildtemp}/seqan/parallel/*
+chmod 0644 %{buildtemp}/seqan/store/*
+chmod 0644 %{buildtemp}/seqan/index/*
+chmod 0644 %{buildtemp}/seqan/platform.h
+chmod 0644 %{buildtemp}/seqan/parallel.h
+
+cp -a %{buildtemp}/seqan %{buildroot}/%{_includedir}/
+rm %{buildroot}/%{_includedir}/seqan/LICENSE
 
 mkdir -p %{buildroot}%{_mandir}/man1
 cd %{buildroot}%{_mandir}/man1
@@ -126,6 +139,9 @@ ctest
 %{_includedir}/seqan
 
 %changelog
+* Tue Jun 28 2011 Adam Huffman <bloch@verdurin.com> - 1.3-4
+- fix bad permissions
+
 * Fri Jun  3 2011 Adam Huffman <bloch@verdurin.com> - 1.3-3
 - add manpages from Debian package
 - add -devel subpackage
