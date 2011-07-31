@@ -1,12 +1,12 @@
 Name:           mothur
-Version:        1.20.3
+Version:        1.21.0
 Release:        1%{?dist}
 Summary:	Computational microbial ecology tool 
 
-Group:		Appllications/Engineering
+Group:		Applications/Engineering
 License:	GPLv3
 URL:		http://www.mothur.org
-Source0:	http://www.mothur.org/w/images/4/42/Mothur.1.20.3.zip
+Source0:	http://www.mothur.org/w/images/4/42/Mothur.%{version}.zip
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	ncurses-devel
@@ -26,16 +26,16 @@ flexibility of these algorithms, they have added a number of other
 features including calculators and visualization tools.
 
 %prep
-%setup -q -n Mothur.source
+#Deal with mistakenly included OS X files
+unzip %{SOURCE0} -x __MACOSX* .DS_Store
+%setup -q -T -D -n Mothur.source
 
-#Remove OS X files
-rm -rf __MACOSX*
 
 %build
 
 
 make %{?_smp_mflags} CXXFLAGS="%{optflags} -DUSE_READLINE -DUSE_COMPRESSION \
--DRELEASE_DATE="\"7/13/2011\"" -DVERSION="\"1.20.3\"""
+-DRELEASE_DATE=""\"7/13/2011\""" -DVERSION=""\"1.21.1\""" -DBIT_VERSION"
 
 
 %install
@@ -54,6 +54,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Jul 29 2011 Adam Huffman <bloch@verdurin.com> - 1.21.0-1
+- update to upstream release 1.21.0
+
 * Tue Jul 19 2011 Adam Huffman <bloch@verdurin.com> - 1.20.3-1
 - initial version
 
