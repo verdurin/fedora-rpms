@@ -1,0 +1,13 @@
+--- din-1.6.6/configure.ac	2011-07-26 12:02:35.000000000 +0100
++++ din-1.6.6.new/configure.ac	2011-07-31 23:05:03.830839438 +0100
+@@ -4,8 +4,8 @@
+ AC_PROG_CXX
+ AC_PROG_CC
+ AC_CHECK_HEADERS([GL/gl.h],AC_MSG_NOTICE([+++ Found OpenGL +++]),[AC_MSG_ERROR([!!! Please install OpenGL !!!])])
+-AC_CHECK_HEADERS([tcl.h] [tcl8.5/tcl.h],AC_MSG_NOTICE([+++ Found Tcl 8.5 +++]),[AC_MSG_WARN([!!! Is Tcl 8.5 installed? !!!])])
+-AC_CHECK_HEADERS([libircclient/libircclient.h],,[AC_MSG_ERROR([!!! Please install libircclient !!!])])
++AC_CHECK_HEADERS([tcl.h] [tcl.h],AC_MSG_NOTICE([+++ Found Tcl 8.5 +++]),[AC_MSG_WARN([!!! Is Tcl 8.5 installed? !!!])])
++AC_CHECK_HEADERS([libircclient.h],,[AC_MSG_ERROR([!!! Please install libircclient !!!])])
+ PKG_CHECK_MODULES([liblo], [liblo])
+ PKG_CHECK_MODULES([jack], [jack])
+ AC_CONFIG_FILES([Makefile src/Makefile include/Makefile data/Makefile])
