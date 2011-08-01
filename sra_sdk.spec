@@ -1,17 +1,20 @@
 %global preversion	rc1
 
 Name:		sra_sdk
-Version:	2.1.0
+Version:	2.1.2
 Release:	1%{?dist}
 Summary:	NCBI SRA toolkit
 
 Group:		Applications/Engineering
 License:	Public Domain
 URL:		http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software
-Source0:	http://trace.ncbi.nlm.nih.gov/Traces/sra/static/sra_sdk-2.1.0.tar.gz
+Source0:	http://trace.ncbi.nlm.nih.gov/Traces/sra/static/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	zlib-devel libxml2-devel bzip2-devel
+BuildRequires:	zlib-devel
+BuildRequires:	libxml2-devel
+BuildRequires:	bzip2-devel
+BuildRequires:	libcurl-devel
 
 %description
 
@@ -55,6 +58,11 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Aug  1 2011 Adam Huffman <bloch@verdurin.com> - 2.1.2-1
+- update to upstream 2.1.2 release
+- add BR for libcurl-devel
+- includes changes to fastq-dump behaviour - see README
+
 * Fri Jul 15 2011 Adam Huffman <bloch@verdurin.com> - 2.1.0-1
 - update to 2.1.0
 
