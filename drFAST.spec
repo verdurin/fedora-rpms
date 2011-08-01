@@ -6,7 +6,7 @@ Summary:        di-base read Fast Alignment Search Tool
 Group:          Applications/Engineering
 License:        Redistributable
 URL:            http://drfast.sourceforge.net
-Source0:        Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.zip
+Source0:        http://downloads.sourceforge.net/drfast/%{name}-%{version}.zip
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  zlib-devel

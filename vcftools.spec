@@ -1,6 +1,6 @@
 Name:		vcftools
-Version:	0.1.5
-Release:	2%{?dist}
+Version:	0.1.6
+Release:	1%{?dist}
 Summary:	VCF file manipulation tools
 
 Group:		Applications/Engineering
@@ -63,6 +63,9 @@ rm -rf %{buildroot}
 %{perl_vendorarch}/VcfStats.pm
 
 %changelog
+* Sun Jul 31 2011 Adam Huffman <bloch@verdurin.com> - 0.1.6-1
+- update to 0.1.6
+
 * Tue May  3 2011 Adam Huffman <bloch@verdurin.com> - 0.1.5-2
 - minor fix to Jack's Perl patch
 - permissions fix

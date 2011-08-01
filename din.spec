@@ -1,5 +1,5 @@
 Name:		din
-Version:	1.6.3
+Version:	1.6.6
 Release:	1%{?dist}
 Summary:	A musical instrument using multiple Bezier curves
 
@@ -60,6 +60,13 @@ rm -rf %{buildroot}
 %{_datadir}/%{name}/*
 
 %changelog
+* Sun Jul 31 2011 Adam Huffman <bloch@verdurin.com> - 1.6.6-1
+- new upstream release 1.6.6
+
+* Mon Jul 25 2011 Adam Huffman <bloch@verdurin.com> - 1.6.5-1
+- new upstream release 1.6.5
+- http://dinisnoise.org/release_notes/
+
 * Tue Jun 21 2011 Adam Huffman <bloch@verdurin.com> - 1.6.3-1
 - new upstream release 1.6.3
 
