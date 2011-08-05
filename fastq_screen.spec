@@ -1,15 +1,17 @@
-Name:           fastq_screen
-Version:        0.2.1
-Release:        1%{?dist}
-Summary:        Contamination screening for next-gen sequence data
+Name:		fastq_screen
+Version:	0.2.1
+Release:	1%{?dist}
+Summary:	Contamination screening for next-gen sequence data
 
-Group:          Applications/Engineering
-License:        GPLv3+
-URL:            http://www.bioinformatics.bbsrc.ac.uk/projects/%{name}/
-Source0:        http://www.bioinformatics.bbsrc.ac.uk/projects/%{name}/%{name}_v%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Group:		Applications/Engineering
+License:	GPLv3+
+URL:		http://www.bioinformatics.bbsrc.ac.uk/projects/%{name}/
+Source0:	http://www.bioinformatics.bbsrc.ac.uk/projects/%{name}/%{name}_v%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Requires:       bowtie
+BuildArch:	noarch
+
+Requires:	bowtie
 
 %description
 
