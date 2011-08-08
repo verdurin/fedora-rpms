@@ -23,7 +23,6 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Various tools for working with Short Read Archive files, including
 conversion tools to other formats
 
-
 %prep
 
 %build
@@ -53,8 +52,6 @@ rm -rf %{buildroot}
 %doc %{_docdir}/%{name}-%{version}/help
 
 %{_bindir}*
-
-
 
 %changelog
 * Tue Aug  2 2011 Adam Huffman <bloch@verdurin.com> - 2.1.2-1
