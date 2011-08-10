@@ -1,0 +1,11 @@
+--- ChIPseeqer-2.0/src/Makefile	2011-05-29 23:36:27.000000000 +0100
++++ ChIPseeqer-2.0.test/src/Makefile	2011-08-04 15:14:06.264710895 +0100
+@@ -343,7 +343,7 @@
+ 	echo "cat ChIPseeqerGUI.pro | sed -e 's/^CONFIG\(.\)*/CONFIG += x86_64/g' > ChIPseeqerGUI.pro.tmp" >> build.gui
+ endif
+ 	echo "mv ChIPseeqerGUI.pro.tmp ChIPseeqerGUI.pro" >> build.gui
+-	echo "qmake" >> build.gui
++	echo "qmake-qt4" >> build.gui
+ 	echo "cd $(SRC)" >> build.gui
+ 	chmod +x build.gui
+ 	./build.gui
