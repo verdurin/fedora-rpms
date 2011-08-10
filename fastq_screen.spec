@@ -1,6 +1,6 @@
 Name:		fastq_screen
 Version:	0.2.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Contamination screening for next-gen sequence data
 
 Group:		Applications/Engineering
@@ -48,6 +48,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Aug 10 2011 Adam Huffman <bloch@verdurin.com> - 0.2.1-2
+- add README explaining use of fastq_screen.conf
+
 * Fri Aug  5 2011 Adam Huffman <bloch@verdurin.com> - 0.2.1-1
 - initial version
 
