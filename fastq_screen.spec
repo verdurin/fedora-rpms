@@ -7,6 +7,7 @@ Group:		Applications/Engineering
 License:	GPLv3+
 URL:		http://www.bioinformatics.bbsrc.ac.uk/projects/%{name}/
 Source0:	http://www.bioinformatics.bbsrc.ac.uk/projects/%{name}/%{name}_v%{version}.tar.gz
+Source1:	%{name}-README.Fedora
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:	noarch
