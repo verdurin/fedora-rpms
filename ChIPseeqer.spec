@@ -1,17 +1,17 @@
-Name:           ChIPseeqer
-Version:        2.0
-Release:        1%{?dist}
-Summary:        ChIP-seq dataset analysis
+Name:		ChIPseeqer
+Version:	2.0
+Release:	1%{?dist}
+Summary:	ChIP-seq dataset analysis
 
-Group:          Applications/Engineering
+Group:		Applications/Engineering
 License:	GPLv3  
-URL:            http://icb.med.cornell.edu/wiki/index.php/Elementolab/ChIPseeqer_Installation
-Source0:        http://physiology.med.cornell.edu/faculty/elemento/lab/CS_files/%{name}-%{version}.tar.gz
+URL:		http://physiology.med.cornell.edu/faculty/elemento/lab/chipseq.shtml
+Source0:	http://physiology.med.cornell.edu/faculty/elemento/lab/CS_files/%{name}-%{version}.tar.gz
 #Source1:	http://physiology.med.cornell.edu/faculty/elemento/lab/CS_files/hg18.tar.gz
 #Source2:	http://physiology.med.cornell.edu/faculty/elemento/lab/CS_files/Encode.tar.gz
 Patch0:		%{name}-qmake-qt4.patch
 Patch1:		%{name}-qmake-qt4-Makefile.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  ncurses-devel
 BuildRequires:	pcre-devel
@@ -19,7 +19,7 @@ BuildRequires:	poppler-qt4-devel
 BuildRequires:	qt-devel >= 4.7.2
 BuildRequires:	perl-ExtUtils-MakeMaker
 
-Requires:	perl-IO-Zlib
+#Requires:	perl-IO-Zlib
 
 %description
 
@@ -51,6 +51,7 @@ make gui CFLAGS="%{optflags}"
 rm -rf %{buildroot}
 
 mkdir -p %{buildroot}%{_bindir}
+cd dist
 install -m 0755 ChIP* %{buildroot}%{_bindir}
 
 
