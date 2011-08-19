@@ -24,6 +24,7 @@ source, and to help identify any sources of contamination.
 %prep
 %setup -q -n %{name}_v%{version}
 
+cp -p %{SOURCE1} .
 
 %build
 
@@ -37,13 +38,16 @@ install -m 0755 %{name} %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_sysconfdir}
 install -m 0644 %{name}.conf %{buildroot}%{_sysconfdir}
 
+mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}
+install -m 0644 %{SOURCE1} %{buildroot}%{_docdir}/%{name}-%{version}
+
 %clean
 rm -rf %{buildroot}
 
 
 %files
 %defattr(-,root,root,-)
-%doc README.txt RELEASE_NOTES.txt
+%doc README.txt RELEASE_NOTES.txt fastq_screen-README.Fedora
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %{_bindir}/%{name}
 
