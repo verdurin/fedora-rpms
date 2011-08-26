@@ -1,12 +1,12 @@
 Name:           mothur
 Version:        1.21.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:	Computational microbial ecology tool 
 
 Group:		Applications/Engineering
 License:	GPLv3
-URL:		http://www.mothur.org
-Source0:	http://www.mothur.org/w/images/4/42/Mothur.%{version}.zip
+URL:		http://www.%{name}.org
+Source0:	http://www.%{name}.org/w/images/6/64/Mothur.1.21.1.zip
 patch0:		%{name}-makefile.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -28,21 +28,20 @@ features including calculators and visualization tools.
 
 %prep
 #Deal with mistakenly included OS X files
-#unzip %{SOURCE0} -x __MACOSX* .DS_Store
 %setup -q   -n Mothur.source
 rm -rf __MACOSX* .DS_Store
 %patch0 -p1
 
 %build
 
-
+#makefile doesn't support SMP builds
 make  
-#make %{?_smp_mflags} CXXFLAGS+="%{optflags}"
 
 %install
 rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
 
+mkdir -p %{buildroot}%{_bindir}
+install -m 0755 %{name} %{buildroot}%{_bindir}
 
 %clean
 rm -rf %{buildroot}
@@ -50,11 +49,14 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc
-
+%doc LICENSE
+%{_bindir}/%{name}
 
 
 %changelog
+* Tue Aug 23 2011 Adam Huffman <bloch@verdurin.com> - 1.21.1-3
+- various style cleanups
+
 * Fri Aug 19 2011 Adam Huffman <bloch@verdurin.com> - 1.21.1-2
 - patch makefile to fix compilation flags
 
