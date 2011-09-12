@@ -4,7 +4,7 @@
 #
 %define name libsequence
 %define version 1.7.3
-%define release 1
+%define release 2
 %define manifest %{_builddir}/%{name}-%{version}-%{release}.manifest
 
 # required items
@@ -43,6 +43,15 @@ Summary: a library for various sequence I/O operations
 a library for various sequence I/O operations
 
 
+%package      devel
+Summary:      Development files for %{name}
+Group:	      Development/Libraries
+Requires:      %{name} = %{version}-%{release}
+
+%description   devel
+The %{name}-devel package contains libraries and header files for
+developing applications that use %{name}.
+
 %prep
 %setup -q
 #%patch0 -p1
@@ -52,44 +61,32 @@ a library for various sequence I/O operations
 make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT
-%makeinstall
+rm -rf %{buildroot}
+mkdir -p %{buildroot}
 
-# __os_install_post is implicitly expanded after the
-# %_install section... do it now, and then disable it,
-# so all work is done before building manifest.
-
-%{?__os_install_post}
-%define __os_install_post %{nil}
-
-# build the file list automagically into %{manifest}
-
-cd $RPM_BUILD_ROOT
-rm -f %{manifest}
-find . -type d \
-        | sed '1,2d;s,^\.,\%attr(-\,root\,root) \%dir ,' >> %{manifest}
-find . -type f \
-        | sed 's,^\.,\%attr(-\,root\,root) ,' >> %{manifest}
-find . -type l \
-        | sed 's,^\.,\%attr(-\,root\,root) ,' >> %{manifest}
-
-#%pre
-#%post
-#%preun
-#%postun
+make install DESTDIR=%{buildroot}
+rm %{buildroot}/%{_libdir}/%{name}.*a
 
 %clean
 rm -f %{manifest}
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{manifest}
+%files 
 %defattr(-,root,root)
 %doc README AUTHORS COPYING ChangeLog
-#%docdir
-#%config
+%{_libdir}/%{name}*.so.*
+
+%files devel
+%defattr(-,root,root)
+%{_includedir}/Sequence
+%{_libdir}/%{name}*.so
+
 
 %changelog
+* Fri Sep  9 2011 Adam Huffman <bloch@verdurin.com> - 1.7.3-2
+- -devel subpackage
+- fix install 
+
 * Thu Aug 18 2011 Adam Huffman <bloch@verdurin.com> - 1.7.3-1
 - initial version, based on upstream template
 
