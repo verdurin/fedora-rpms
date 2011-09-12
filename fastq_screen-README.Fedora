@@ -1,0 +1,6 @@
+This RPM includes the configuration file fastq_screen.conf, in /etc.
+
+You need to specify the location of this file on the command line,
+using the --conf option.  If you wish to edit the file, it is
+suggested to copy it to your home directory and point the program at
+that location e.g. fastq_screen --config $HOME/fastq_screen.conf

@@ -1,0 +1,20 @@
+--- ChIPseeqer-2.0/gui/ChIPseeqerGUI.pro.user.1.3	2011-05-29 23:45:13.000000000 +0100
++++ ChIPseeqer-2.0.test/gui/ChIPseeqerGUI.pro.user.1.3	2011-08-04 15:09:06.721850026 +0100
+@@ -97,7 +97,7 @@
+     <value type="QString">-r</value>
+     <value type="QString">CONFIG+=debug_and_release</value>
+    </valuelist>
+-   <value key="abstractProcess.command" type="QString">/usr/bin/qmake</value>
++   <value key="abstractProcess.command" type="QString">/usr/bin/qmake-qt4</value>
+    <value key="abstractProcess.enabled" type="bool">false</value>
+    <value key="abstractProcess.workingDirectory" type="QString">/Users/eug2002/Development/CS/ChIPseeqer/branches/ChIPseeqer-1.0/gui</value>
+   </valuemap>
+@@ -191,7 +191,7 @@
+     <value type="QString">CONFIG+=debug_and_release</value>
+     <value type="QString">CONFIG+=release</value>
+    </valuelist>
+-   <value key="abstractProcess.command" type="QString">/usr/bin/qmake</value>
++   <value key="abstractProcess.command" type="QString">/usr/bin/qmake-qt4</value>
+    <value key="abstractProcess.enabled" type="bool">false</value>
+    <value key="abstractProcess.workingDirectory" type="QString">/Users/eug2002/Development/CS/ChIPseeqer/branches/ChIPseeqer-1.0/gui</value>
+   </valuemap>

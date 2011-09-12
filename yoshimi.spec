@@ -1,14 +1,15 @@
 Name:		yoshimi
 Version:	0.060.10
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Rewrite of ZynAddSubFx aiming for better JACK support
 
 Group:		Applications/Multimedia
 License:	GPLv2+
-URL:		http://sourceforge.net/projects/yoshimi
+URL:		http://sourceforge.net/projects/%{name}
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-Source1:	yoshimi.desktop
-Source2:	yoshimi.svg
+Source1:	%{name}.desktop
+Source2:	%{name}.svg
+Patch0:		
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	jack-audio-connection-kit-devel
@@ -29,7 +30,7 @@ effects like Reverb, Echo, Chorus, Phaser...
 
 %prep
 %setup -q
-
+%patch0 -p1 -b .yoshimi-fltk13.patch
 
 %build
 cd src
@@ -73,13 +74,16 @@ fi
 %files
 %defattr(-,root,root,-)
 %doc 0.060.10.notes COPYING
-%{_bindir}/yoshimi
+%{_bindir}/%{name}
 %{_datadir}/%{name}/banks/
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/%{name}/presets/
 
 %changelog
+* Mon Aug 29 2011 Adam Huffman <bloch@verdurin.com> - 0.060.10-2
+- add patch from Brendan Jones to fix compilation with FLTK 1.3
+
 * Sun Apr 17 2011 Adam Huffman <bloch@verdurin.com> - 0.060.10-1
 - new upstream release with further licensing clarification
 
