@@ -1,5 +1,5 @@
 Name:		cufflinks
-Version:	1.0.3
+Version:	1.1.0
 Release:	1%{?dist}
 Summary:	RNA-Seq transcript assembly, differential expression/regulation
 
@@ -57,6 +57,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Sep 15 2011 Adam Huffman <bloch@verdurin.com> - 1.1.0-1
+- New upstream bugfix release 1.1.0
+
 * Mon Jun  6 2011 Adam Huffman <bloch@verdurin.com> - 1.0.3-1
 - new upstream release
 
