@@ -1,5 +1,5 @@
 Name:		tophat
-Version:	1.3.1
+Version:	1.3.2
 Release:	1%{?dist}
 Summary:	A spliced read mapper for RNA-Seq
 
@@ -59,6 +59,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Sep 15 2011 Adam Huffman <bloch@verdurin.com> - 1.3.2-1
+- new upstream bugfix release 1.3.2
+- extend samtools header patch to include bam_merge.cpp
+
 * Tue Jun 28 2011 Adam Huffman <bloch@verdurin.com> - 1.3.1-1
 - update samtools patch
 

@@ -1,6 +1,6 @@
-diff -ur tophat-1.3.1/ax_bam.m4 tophat-1.3.1.new/ax_bam.m4
---- tophat-1.3.1/ax_bam.m4	2010-10-11 20:24:42.000000000 +0100
-+++ tophat-1.3.1.new/ax_bam.m4	2011-06-28 01:32:11.782393843 +0100
+diff -ur tophat-1.3.2/ax_bam.m4 tophat-1.3.2.new/ax_bam.m4
+--- tophat-1.3.2/ax_bam.m4	2010-10-11 20:24:42.000000000 +0100
++++ tophat-1.3.2.new/ax_bam.m4	2011-09-15 11:04:05.713705723 +0100
 @@ -102,7 +102,7 @@
  
  	AC_LANG_PUSH(C++)
@@ -10,9 +10,9 @@ diff -ur tophat-1.3.1/ax_bam.m4 tophat-1.3.1.new/ax_bam.m4
  	]], [[
  	]])],[
          AC_MSG_RESULT(yes)
-diff -ur tophat-1.3.1/src/align_status.h tophat-1.3.1.new/src/align_status.h
---- tophat-1.3.1/src/align_status.h	2011-06-23 15:20:56.000000000 +0100
-+++ tophat-1.3.1.new/src/align_status.h	2011-06-28 01:31:28.361433627 +0100
+diff -ur tophat-1.3.2/src/align_status.h tophat-1.3.2.new/src/align_status.h
+--- tophat-1.3.2/src/align_status.h	2011-06-23 15:20:56.000000000 +0100
++++ tophat-1.3.2.new/src/align_status.h	2011-09-15 11:04:05.713705723 +0100
 @@ -14,7 +14,7 @@
  #include <cassert>
  #include <cstring>
@@ -22,9 +22,9 @@ diff -ur tophat-1.3.1/src/align_status.h tophat-1.3.1.new/src/align_status.h
  #include "common.h"
  #include "junctions.h"
  
-diff -ur tophat-1.3.1/src/bam2fastx.cpp tophat-1.3.1.new/src/bam2fastx.cpp
---- tophat-1.3.1/src/bam2fastx.cpp	2011-06-02 22:56:56.000000000 +0100
-+++ tophat-1.3.1.new/src/bam2fastx.cpp	2011-06-28 01:38:23.240900808 +0100
+diff -ur tophat-1.3.2/src/bam2fastx.cpp tophat-1.3.2.new/src/bam2fastx.cpp
+--- tophat-1.3.2/src/bam2fastx.cpp	2011-06-02 22:56:56.000000000 +0100
++++ tophat-1.3.2.new/src/bam2fastx.cpp	2011-09-15 11:04:05.714705780 +0100
 @@ -3,8 +3,8 @@
  #include <cstring>
  #include <getopt.h>
@@ -36,9 +36,23 @@ diff -ur tophat-1.3.1/src/bam2fastx.cpp tophat-1.3.1.new/src/bam2fastx.cpp
  
  static bool is_fastq=true; //default is fastq
  static char qseq[2048];
-diff -ur tophat-1.3.1/src/bwt_map.h tophat-1.3.1.new/src/bwt_map.h
---- tophat-1.3.1/src/bwt_map.h	2011-06-02 22:56:55.000000000 +0100
-+++ tophat-1.3.1.new/src/bwt_map.h	2011-06-28 01:32:27.957889340 +0100
+diff -ur tophat-1.3.2/src/bam_merge.cpp tophat-1.3.2.new/src/bam_merge.cpp
+--- tophat-1.3.2/src/bam_merge.cpp	2011-09-05 19:44:35.000000000 +0100
++++ tophat-1.3.2.new/src/bam_merge.cpp	2011-09-15 11:04:34.135338875 +0100
+@@ -2,8 +2,8 @@
+ #include <cstdio>
+ #include <cstring>
+ 
+-#include "bam/bam.h"
+-#include "bam/sam.h"
++#include "samtools/bam.h"
++#include "samtools/sam.h"
+ #include "GBase.h"
+ #include "GList.hh"
+ 
+diff -ur tophat-1.3.2/src/bwt_map.h tophat-1.3.2.new/src/bwt_map.h
+--- tophat-1.3.2/src/bwt_map.h	2011-06-02 22:56:55.000000000 +0100
++++ tophat-1.3.2.new/src/bwt_map.h	2011-09-15 11:04:05.714705780 +0100
 @@ -15,7 +15,7 @@
  #include <cstring>
  #include <seqan/sequence.h>
@@ -48,9 +62,9 @@ diff -ur tophat-1.3.1/src/bwt_map.h tophat-1.3.1.new/src/bwt_map.h
  using namespace std;
  
  #include "common.h"
-diff -ur tophat-1.3.1/src/common.h tophat-1.3.1.new/src/common.h
---- tophat-1.3.1/src/common.h	2011-06-23 15:20:56.000000000 +0100
-+++ tophat-1.3.1.new/src/common.h	2011-06-28 01:36:01.268070404 +0100
+diff -ur tophat-1.3.2/src/common.h tophat-1.3.2.new/src/common.h
+--- tophat-1.3.2/src/common.h	2011-06-23 15:20:56.000000000 +0100
++++ tophat-1.3.2.new/src/common.h	2011-09-15 11:04:05.715705838 +0100
 @@ -15,8 +15,8 @@
  #include <cstdio>
  #include <string>
