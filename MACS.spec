@@ -1,16 +1,6 @@
-# Use Python 2.6
-%global pybasever 2.6
-%global __python_ver 26
-%global __python %{_bindir}/python%{?pybasever}
-%global __os_install_post %{?__python%{?__python_ver}_os_install_post}
-
-
-%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
-
-
 Name:		    MACS
 Version:	    1.4.1
-Release:	    1%{?dist}
+Release:	    2%{?dist}
 Summary:	    Model-based Analysis for ChIP-Seq
 
 Group:		    Applications/Engineering
@@ -22,7 +12,7 @@ Source0:	    taoliu-MACS-v1.4.1-0-ge7c8efe.tar.gz
 BuildRoot:	    %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:	    noarch
-BuildRequires:	    python26-devel
+BuildRequires:	    python-devel
 
 
 %description
@@ -64,14 +54,19 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %doc README ChangeLog COPYING NEW_IN_MACS14 TODO
-%{_mandir}/man1/macs.1*
-%{python_sitelib}/*
+%{_mandir}/man1/macs.1.*
+%{python_sitelib}/%{name}*
+%{python_sitelib}/%{name}-%{version}-py*.egg*
 %{_bindir}/macs14
 %{_bindir}/eland*
 %{_bindir}/sam2bed
 %{_bindir}/wignorm
 
 %changelog
+* Sun Oct  9 2011 Adam Huffman <bloch@verdurin.com> - 1.4.1-2
+- remove EPEL-specific macros
+- make files and manpages more specific
+
 * Wed Jun 29 2011 Adam Huffman <bloch@verdurin.com> - 1.4.1-1
 - new upstream release 1.4.1
 - see https://github.com/taoliu/MACS/blob/macs_v1/ChangeLog for fixes
