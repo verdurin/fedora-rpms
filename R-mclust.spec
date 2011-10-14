@@ -42,18 +42,23 @@ rm -rf %{buildroot}
 %files
 %defattr(-, root, root, -)
 %dir %{rlibdir}/%{packname}
-%doc %{rlibdir}/%{packname}/doc
 %doc %{rlibdir}/%{packname}/html
 %doc %{rlibdir}/%{packname}/DESCRIPTION
-%doc %{rlibdir}/%{packname}/NEWS
 %{rlibdir}/%{packname}/INDEX
-%{rlibdir}/%{packname}/NAMESPACE
 %{rlibdir}/%{packname}/Meta
 %{rlibdir}/%{packname}/R
 %{rlibdir}/%{packname}/help
+%{rlibdir}/%{packname}/CITATION
+%{rlibdir}/%{packname}/LICENSE
+%{rlibdir}/%{packname}/data
+%{rlibdir}/%{packname}/cite
 
 
 %changelog
+* Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> - 3.4.10-2
+- remove unnecessary %%files entries
+- add missing %%files entries
+
 * Thu Oct 13 2011 Adam Huffman <bloch@verdurin.com> - 3.4.10-2
 - reinstate R-mix BR
 
