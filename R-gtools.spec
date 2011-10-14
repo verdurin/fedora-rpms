@@ -4,7 +4,7 @@
 
 Name:             R-%{packname}
 Version:          2.6.2
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Various r programming tools
 
 Group:            Applications/Engineering 
@@ -41,7 +41,6 @@ rm -rf %{buildroot}
 %files
 %defattr(-, root, root, -)
 %dir %{rlibdir}/%{packname}
-%doc %{rlibdir}/%{packname}/doc
 %doc %{rlibdir}/%{packname}/html
 %doc %{rlibdir}/%{packname}/DESCRIPTION
 %doc %{rlibdir}/%{packname}/NEWS
@@ -50,8 +49,15 @@ rm -rf %{buildroot}
 %{rlibdir}/%{packname}/Meta
 %{rlibdir}/%{packname}/R
 %{rlibdir}/%{packname}/help
+%{rlibdir}/%{packname}/ChangeLog
+%{rlibdir}/%{packname}/data
+%{rlibdir}/%{packname}/libs
 
 
 %changelog
-* Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> 2.6.2-1
+* Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> - 2.6.2-2
+- more %%files fixes
+
+* Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> - 2.6.2-1
+- fix %%files
 - initial package for Fedora
