@@ -4,7 +4,7 @@
 
 Name:             R-%{packname}
 Version:          3.4.10
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Model-based clustering / normal mixture modeling
 
 Group:            Applications/Engineering 
@@ -16,6 +16,7 @@ BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:         R >= 2.2.0 R-stats R-utils 
 Requires:         R-mix 
 BuildRequires:    R-devel tex(latex) R >= 2.2.0 R-stats R-utils R-mix
+
 
 %description
 Model-based clustering and normal mixture modeling including Bayesian
@@ -53,5 +54,8 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Oct 13 2011 Adam Huffman <bloch@verdurin.com> - 3.4.10-2
+- reinstate R-mix BR
+
 * Thu Oct 13 2011 Adam Huffman <bloch@verdurin.com> 3.4.10-1
 - initial package for Fedora
