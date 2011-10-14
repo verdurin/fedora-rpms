@@ -15,7 +15,11 @@ BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Requires:         R >= 2.6.0 R-Biobase >= 2.5.5 R-affy >= 1.23.4 R-graphics R-grDevices R-methods R-stats R-utils R-mclust 
 Requires:         R-pumadata R-affydata R-snow R-limma R-annotate R-ROCR 
-BuildRequires:    R-devel tex(latex) R >= 2.6.0 R-Biobase >= 2.5.5 R-affy >= 1.23.4 R-graphics R-grDevices R-methods R-stats R-utils R-mclust R-pumadata R-affydata R-snow R-limma R-annotate R-ROCR
+#BuildRequires:    R-devel tex(latex) R >= 2.6.0 R-Biobase >= 2.5.5 R-affy >= 1.23.4 R-graphics R-grDevices R-methods R-stats R-utils R-mclust R-pumadata R-affydata R-snow R-limma R-annotate R-ROCR
+# Don't need all these from "sugggests"
+BuildRequires:    R-devel tex(latex) R >= 2.6.0 R-Biobase >= 2.5.5 R-affy >= 1.23.4 R-graphics R-grDevices R-methods R-stats R-utils R-mclust 
+
+#TODO: needs mclust, grDevices in R-core
 
 %description
 Most analyses of Affymetrix GeneChip data are based on point estimates of
