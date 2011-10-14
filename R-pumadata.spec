@@ -52,17 +52,18 @@ rm -rf %{buildroot}
 %doc %{rlibdir}/%{packname}/doc
 %doc %{rlibdir}/%{packname}/html
 %doc %{rlibdir}/%{packname}/DESCRIPTION
-%doc %{rlibdir}/%{packname}/NEWS
 %{rlibdir}/%{packname}/INDEX
-%{rlibdir}/%{packname}/NAMESPACE
 %{rlibdir}/%{packname}/Meta
 %{rlibdir}/%{packname}/R
 %{rlibdir}/%{packname}/help
+%{rlibdir}/%{packname}/CITATION
+%{rlibdir}/%{packname}/data
 
 
 %changelog
 * Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> - 1.0.3-2
 - remove circular dependency on R-puma
+- fix %%files
 - disable %%check to work around circular dependency
 
 * Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> 1.0.3-1
