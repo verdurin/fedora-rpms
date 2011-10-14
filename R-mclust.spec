@@ -52,6 +52,7 @@ rm -rf %{buildroot}
 %{rlibdir}/%{packname}/LICENSE
 %{rlibdir}/%{packname}/data
 %{rlibdir}/%{packname}/cite
+%{rlibdir}/%{packname}/libs
 
 
 %changelog
