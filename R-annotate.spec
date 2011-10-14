@@ -3,8 +3,8 @@
 
 
 Name:             R-%{packname}
-Version:          1.26.1
-Release:          3%{?dist}
+Version:          1.30.1
+Release:          1%{?dist}
 Summary:          Annotation for microarrays
 
 Group:            Applications/Engineering 
@@ -61,6 +61,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> - 1.30.1-1
+- update to latest upstream release 1.30.1
+
 * Wed Apr 20 2011 Adam Huffman <adam@elstir.smith.man.ac.uk> - 1.26.1-3
 - remove genefilter reqs
 
