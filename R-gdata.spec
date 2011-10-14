@@ -4,7 +4,7 @@
 
 Name:             R-%{packname}
 Version:          2.8.2
-Release:          2%{?dist}
+Release:          3%{?dist}
 Summary:          Various r programming tools for data manipulation
 
 Group:            Applications/Engineering 
@@ -21,7 +21,10 @@ BuildRequires:    R-devel tex(latex) R >= 2.6.0 R-gtools
 BuildRequires:	  perl-Spreadsheet-ParseExcel
 # Perl Excel modules required
 
-
+%{?filter_setup:
+%filter_requires_in %{rlibdir}/%{packname}/perl
+%filter_setup
+}
 
 
 %description
@@ -67,6 +70,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> - 2.8.2-3
+- filter problematic Perl auto-reqs
+
 * Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> - 2.8.2-2
 - re-add perl subdirectory to meet R-gplots reqs.
 
