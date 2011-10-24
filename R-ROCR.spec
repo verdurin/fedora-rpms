@@ -4,7 +4,7 @@
 
 Name:             R-%{packname}
 Version:          1.0.4
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Visualizing the performance of scoring classifiers
 
 Group:            Applications/Engineering 
@@ -56,17 +56,20 @@ rm -rf %{buildroot}
 %files
 %defattr(-, root, root, -)
 %dir %{rlibdir}/%{packname}
-%doc %{rlibdir}/%{packname}/doc
 %doc %{rlibdir}/%{packname}/html
 %doc %{rlibdir}/%{packname}/DESCRIPTION
 %doc %{rlibdir}/%{packname}/NEWS
+%doc %{rlibdir}/%{packname}/LICENCE
 %{rlibdir}/%{packname}/INDEX
-%{rlibdir}/%{packname}/NAMESPACE
 %{rlibdir}/%{packname}/Meta
 %{rlibdir}/%{packname}/R
 %{rlibdir}/%{packname}/help
+%{rlibdir}/%{packname}data
 
 
 %changelog
+* Mon Oct 24 2011 Adam Huffman <bloch@verdurin.com> - 1.0.4-2
+- fix %%files 
+
 * Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> 1.0.4-1
 - initial package for Fedora
