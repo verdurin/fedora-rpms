@@ -1,6 +1,6 @@
 Name:		tabix
 Version:	0.2.5
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Generic indexer for TAB-delimited genome position files
 
 Group:		Applications/Engineering
@@ -33,12 +33,12 @@ locally.
 
 
 %build
-make %{?_smp_mflags}
+make %{?_smp_mflags} CFLAGS="%{optflags}"
 
 # Perl module not built by default - in separate subdir.
 cd perl
 %{__perl} Makefile.PL INSTALLDIRS=vendor OPTIMIZE="%{optflags}"
-make %{?_smp_mflags}
+make %{?_smp_mflags} 
 
 
 %install
@@ -81,6 +81,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Oct 12 2011 Adam Huffman <bloch@verdurin.com> - 0.2.5-2
+- use Fedora CFLAGS
+
 * Mon May  2 2011 Adam Huffman <bloch@verdurin.com> - 0.2.5-1
 - new upstream version
 
