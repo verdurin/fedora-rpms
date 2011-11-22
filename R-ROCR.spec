@@ -64,7 +64,8 @@ rm -rf %{buildroot}
 %{rlibdir}/%{packname}/Meta
 %{rlibdir}/%{packname}/R
 %{rlibdir}/%{packname}/help
-%{rlibdir}/%{packname}data
+%{rlibdir}/%{packname}/data
+%{rlibdir}/%{packname}/demo
 
 
 %changelog
