@@ -52,8 +52,12 @@ rm -rf %{buildroot}
 %{rlibdir}/%{packname}/Meta
 %{rlibdir}/%{packname}/R
 %{rlibdir}/%{packname}/help
+%{rlibdir}/%{packname}/data
+%{rlibdir}/%{packname}/TODO
+%{rlibdir}/%{packname}/ChangeLog
 
 
 %changelog
-* Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> 2.10.1-1
+* Fri Oct 14 2011 Adam Huffman <bloch@verdurin.com> - 2.10.1-1
+- add missing %%files entries
 - initial package for Fedora
