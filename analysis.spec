@@ -10,6 +10,7 @@ Source0:	http://molpopgen.org/software/%{name}/%{name}-%{version}.tar.gz
 
 BuildRequires:  libsequence-devel
 BuildRequires:	gsl-devel
+BuildRequires:	boost-devel
 
 
 %description
@@ -39,6 +40,7 @@ make install DESTDIR=%{buildroot}
 %changelog
 * Mon Sep 12 2011 Adam Huffman <bloch@verdurin.com> - 0.8.0-2
 - add missing group field
+- add missing Boost BR
 
 * Fri Sep  9 2011 Adam Huffman <bloch@verdurin.com> - 0.8.0-1
 - Initial version
