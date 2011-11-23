@@ -1,0 +1,22 @@
+--- cufflinks-1.1.0/src/common.h	2011-09-08 19:31:13.000000000 +0100
++++ cufflinks-1.1.0.new/src/common.h	2011-11-23 11:50:36.282390584 +0000
+@@ -18,15 +18,15 @@
+ #include <string>
+ #include <utility>
+ 
+-#include <boost/math/distributions/normal.hpp> 
++#include <boost141/boost/math/distributions/normal.hpp> 
+ using boost::math::normal;
+ 
+-#include <boost/foreach.hpp>
++#include <boost141/boost/foreach.hpp>
+ #define foreach         BOOST_FOREACH
+ #define reverse_foreach BOOST_REVERSE_FOREACH
+ 
+-#include <boost/thread.hpp>
+-#include <boost/shared_ptr.hpp>
++#include <boost141/boost/thread.hpp>
++#include <boost141/boost/shared_ptr.hpp>
+ 
+ // Non-option globals
+ extern bool final_est_run;
