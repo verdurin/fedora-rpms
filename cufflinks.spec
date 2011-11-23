@@ -1,6 +1,6 @@
 Name:		cufflinks
-Version:	1.0.3
-Release:	2%{?dist}
+Version:	1.1.0
+Release:	1%{?dist}
 Summary:	RNA-Seq transcript assembly, differential expression/regulation
 
 Group:		Applications/Engineering
@@ -10,6 +10,7 @@ Source0:	http://cufflinks.cbcb.umd.edu/downloads/%{name}-%{version}.tar.gz
 Patch0:		%{name}-bam-header.patch
 Patch1:		%{name}-boost-thread.patch
 Patch2:		%{name}-boost141-headers.patch
+Patch3:		%{name}-boost141-common-headers.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	boost141-devel samtools-devel zlib-devel
@@ -37,7 +38,8 @@ at Caltech.
 %patch1 -p1 -b .cufflinks-boost-thread.patch
 #Look for EPEL Boost 141 headers in the correct location
 %patch2 -p1 -b .cufflinks-boost141-headers.patch
-
+#More Boost141 fixes for common.h for EPEL
+%patch3 -p1 -b .cufflinks-boost141-common-headers.patch
 
 %build
 autoreconf
@@ -61,6 +63,12 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Nov 23 2011 Adam Huffman <bloch@verdurin.com> - 1.1.0-1
+- add patch for config.h for Boost141 on EPEL5
+
+* Tue Nov 22 2011 Adam Huffman <bloch@verdurin.com> - 1.1.0-1
+- new upstream release 1.1.0
+
 * Mon Aug 22 2011 Adam Huffman <bloch@verdurin.com> - 1.0.3-2
 - better EPEL5 fixes for boost141
 
