@@ -11,8 +11,8 @@
 %define __find_requires %{nil}
 
 Name:           eman2-bin
-Version:        2.02
-Release:        1%{?dist}
+Version:        2.04
+Release:        2%{?dist}
 Summary:        Single particle EM analysis
 
 Group:          Applications/Engineering
@@ -62,6 +62,12 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Nov 24 2011 Adam Huffman <bloch@verdurin.com> - 2.04-2
+- fix paths for bundled Python
+
+* Wed Nov 23 2011 Adam Huffman <bloch@verdurin.com> - 2.04-1
+- new upstream release 2.0.4
+
 * Mon Jun 13 2011 Adam Huffman <bloch@verdurin.com> - 2.0.2-1
 - new upstream release 2.0.2
 
