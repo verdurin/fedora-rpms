@@ -7,7 +7,7 @@
 
 
 Name:           sratoolkit
-Version:        2.1.2
+Version:        2.1.8
 Release:        1%{?dist}
 Summary:        Binary distribution of Short Read Archive toolkit
 
@@ -37,7 +37,7 @@ cd %{buildroot}
 tar zxf %SOURCE0
 
 cd %{name}.%{version}-centos_linux64
-mv USAGE help/ %{buildroot}%{_docdir}/%{name}-%{version}
+mv README help/ %{buildroot}%{_docdir}/%{name}-%{version}
 mv * %{buildroot}%{_bindir}
 cd ..
 rm -rf %{name}.%{version}-centos_linux64
@@ -48,12 +48,15 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc %{_docdir}/%{name}-%{version}/USAGE
+%doc %{_docdir}/%{name}-%{version}/README
 %doc %{_docdir}/%{name}-%{version}/help
 
 %{_bindir}*
 
 %changelog
+* Wed Dec 14 2011 Peter Briggs <peter.briggs@manchester.ac.uk> - 2.1.8-1
+- Updated sratoolkit to version 2.1.8
+
 * Tue Aug  2 2011 Adam Huffman <bloch@verdurin.com> - 2.1.2-1
 - initial version
 
