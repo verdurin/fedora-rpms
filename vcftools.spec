@@ -1,5 +1,5 @@
 Name:		vcftools
-Version:	0.1.6
+Version:	0.1.7
 Release:	1%{?dist}
 Summary:	VCF file manipulation tools
 
@@ -63,6 +63,9 @@ rm -rf %{buildroot}
 %{perl_vendorarch}/VcfStats.pm
 
 %changelog
+* Thu Jan  5 2012 Adam Huffman <verdurin@fedoraproject.org> - 0.1.7-1
+- update to upstream release 0.1.7
+
 * Sun Jul 31 2011 Adam Huffman <bloch@verdurin.com> - 0.1.6-1
 - update to 0.1.6
 
