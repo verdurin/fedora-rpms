@@ -1,6 +1,6 @@
 Name:		yoshimi
-Version:	0.060.10
-Release:	2%{?dist}
+Version:	0.060.12
+Release:	1%{?dist}
 Summary:	Rewrite of ZynAddSubFx aiming for better JACK support
 
 Group:		Applications/Multimedia
@@ -9,14 +9,21 @@ URL:		http://sourceforge.net/projects/%{name}
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Source1:	%{name}.desktop
 Source2:	%{name}.svg
-Patch0:		
+Patch0:		%{name}-fltk-1.3.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	jack-audio-connection-kit-devel
-BuildRequires:	cmake zlib-devel fontconfig-devel
-BuildRequires:	fltk-devel fltk-fluid fftw3-devel
-BuildRequires:	mxml-devel alsa-lib-devel libsndfile-devel
-BuildRequires:	desktop-file-utils boost-devel
+BuildRequires:	cmake 
+BuildRequires:	zlib-devel 
+BuildRequires:	fontconfig-devel
+BuildRequires:	fltk-devel 
+BuildRequires:	fltk-fluid 
+BuildRequires:	fftw3-devel
+BuildRequires:	mxml-devel 
+BuildRequires:	alsa-lib-devel 
+BuildRequires:	libsndfile-devel
+BuildRequires:	desktop-file-utils 
+BuildRequires:	boost-devel
 
 %description
 
@@ -30,7 +37,7 @@ effects like Reverb, Echo, Chorus, Phaser...
 
 %prep
 %setup -q
-%patch0 -p1 -b .yoshimi-fltk13.patch
+#%patch0 -p1 -b .yoshimi-fltk-1.3.patch
 
 %build
 cd src
@@ -73,7 +80,7 @@ fi
 
 %files
 %defattr(-,root,root,-)
-%doc 0.060.10.notes COPYING
+%doc 0.060.12.notes COPYING
 %{_bindir}/%{name}
 %{_datadir}/%{name}/banks/
 %{_datadir}/applications/%{name}.desktop
@@ -81,6 +88,10 @@ fi
 %{_datadir}/%{name}/presets/
 
 %changelog
+* Sun Jan  8 2012 Adam Huffman <verdurin@fedoraproject.org> - 0.060.12-1
+- update to new upstream release 0.060.12
+- remove FLTK 1.3 patch
+
 * Mon Aug 29 2011 Adam Huffman <bloch@verdurin.com> - 0.060.10-2
 - add patch from Brendan Jones to fix compilation with FLTK 1.3
 
