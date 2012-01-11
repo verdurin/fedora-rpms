@@ -6,14 +6,14 @@
 %global SCRIPTS		"%{_builddir}/%{_bindir}"
 
 Name:           ucsc-tools
-Version:        248
-Release:        6%{?dist}
+Version:        260
+Release:        1%{?dist}
 Summary:        Various useful bioinformatics tools from UCSC
 
 Group:          Applications/Engineering
 License:        GPLv2
 URL:            http://genomewiki.ucsc.edu/index.php/Main_Page
-Source0:        jksrc.v%{version}.zip
+Source0:        http://genomewiki.ucsc.edu/index.php/Main_Page/jksrc.v%{version}.zip
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  mysql-devel libpng-devel zlib-devel rsync
@@ -71,6 +71,7 @@ sed -i 's/\${CGI_BIN}-\${USER}/\${CGI_BIN}/g' {} \;
 %endif
 
 mkdir -p %{_builddir}/%{_bindir}
+mkdir -p %{_builddir}%{_builddir}%{_bindir}
 
 # Workaround hardcoded Apache location
 mkdir -p %{_builddir}/%{_localstatedir}/www/html
@@ -135,6 +136,11 @@ rm -rf %{buildroot}
 %{_localstatedir}/www/html/*
 
 %changelog
+* Wed Jan 11 2012 Adam Huffman <verdurin@fedoraproject.org> - 260-1
+- update to v260
+- fix source URL
+- another ugly build fix, thanks to peter Briggs
+
 * Tue Apr  5 2011 Adam Huffman <bloch@verdurin.com> - 248-6
 - subpackage for browser files
 
