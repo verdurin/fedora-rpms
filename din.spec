@@ -1,5 +1,5 @@
 Name:		din
-Version:	1.6.6
+Version:	1.9.2
 Release:	1%{?dist}
 Summary:	A musical instrument using multiple Bezier curves
 
@@ -13,9 +13,14 @@ Patch2:		din-include.patch
 Patch3:		din-data.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	tcl-devel libircclient-devel SDL-devel liblo-devel
-BuildRequires:	jack-audio-connection-kit-devel mesa-libGL-devel
-BuildRequires:	automake fftw-devel
+BuildRequires:	tcl-devel 
+BuildRequires:	libircclient-devel
+BuildRequires:	SDL-devel
+BuildRequires:	liblo-devel
+BuildRequires:	jack-audio-connection-kit-devel 
+BuildRequires:	mesa-libGL-devel
+BuildRequires:	automake 
+BuildREquires:	fftw-devel
 
 %description
 
@@ -60,6 +65,14 @@ rm -rf %{buildroot}
 %{_datadir}/%{name}/*
 
 %changelog
+* Wed Jan 11 2012 Adam Huffman <verdurin@fedoraproject.org> - 1.9.2-1
+- update to 1.9.2
+- minor spec formatting cleanups
+
+* Wed Nov 16 2011 Adam Huffman <bloch@verdurin.com> - 1.9-1
+- upstream release 1.9
+- update din-build.patch
+
 * Sun Jul 31 2011 Adam Huffman <bloch@verdurin.com> - 1.6.6-1
 - new upstream release 1.6.6
 
