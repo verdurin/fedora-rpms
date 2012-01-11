@@ -1,8 +1,8 @@
---- vcftools_0.1.5/perl/Makefile	2011-04-13 14:07:49.000000000 +0100
-+++ vcftools_0.1.5.new/perl/Makefile	2011-05-03 13:04:06.773315421 +0100
+--- vcftools_0.1.7/perl/Makefile	2011-10-07 09:38:40.000000000 +0100
++++ vcftools_0.1.7.new/perl/Makefile	2012-01-05 11:59:47.110180995 +0000
 @@ -1,7 +1,7 @@
  
- BIN = vcf-compare fill-aa fill-rsIDs vcf-annotate vcf-merge vcf-isec vcf-stats vcf-to-tab fill-an-ac \
+ BIN = vcf-compare fill-aa vcf-annotate vcf-merge vcf-isec vcf-stats vcf-to-tab fill-an-ac \
      vcf-query vcf-convert vcf-subset vcf-validator vcf-concat vcf-sort
 -MOD = FaSlice.pm Vcf.pm
 +MOD = FaSlice.pm Vcf.pm VcfStats.pm

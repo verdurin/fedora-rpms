@@ -45,7 +45,7 @@ rm -rf %{buildroot}
 %{_bindir}/vcf-compare
 %{_bindir}/fill-aa
 %{_bindir}/fill-an-ac
-%{_bindir}/fill-rsIDs
+#%%{_bindir}/fill-rsIDs
 %{_bindir}/vcf-merge
 %{_bindir}/vcf-query
 %{_bindir}/vcf-annotate
@@ -65,6 +65,8 @@ rm -rf %{buildroot}
 %changelog
 * Thu Jan  5 2012 Adam Huffman <verdurin@fedoraproject.org> - 0.1.7-1
 - update to upstream release 0.1.7
+- remove fill-rsIDs
+- update Perl makefile patch
 
 * Sun Jul 31 2011 Adam Huffman <bloch@verdurin.com> - 0.1.6-1
 - update to 0.1.6
