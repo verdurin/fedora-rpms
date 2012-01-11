@@ -1,0 +1,57 @@
+--- libircclient-1.3/src/dcc.c	2009-01-03 11:14:59.000000000 +0000
++++ libircclient-1.3.new/src/dcc.c	2012-01-11 22:19:54.879195181 +0000
+@@ -313,10 +313,10 @@
+ 				{
+ 					dcc->incoming_offset += length;
+ 
+-					if ( dcc->dccmode != LIBIRC_DCC_CHAT )
++				if ( dcc->dccmode != LIBIRC_DCC_CHAT )
+ 						offset = dcc->incoming_offset;
+ 					else
+-						offset = libirc_findcrorlf (dcc->incoming_buf, dcc->incoming_offset);
++						offset = libirc_findcrorlf ((char *)(dcc->incoming_buf), dcc->incoming_offset);
+ 
+ 					/*
+ 					 * In LIBIRC_STATE_CONFIRM_SIZE state we don't call any
+@@ -330,7 +330,7 @@
+ 
+ 						if ( dcc->incoming_offset == 4 )
+ 						{
+-							unsigned int received_size = ntohl (*((unsigned int*)dcc->incoming_buf));
++							unsigned int received_size = ntohl (*((unsigned int*)(dcc->incoming_buf)));
+ 
+ 							// Sent size confirmed
+ 							if ( dcc->file_confirm_offset == received_size )
+@@ -356,7 +356,7 @@
+ 							if ( dcc->dccmode != LIBIRC_DCC_RECVFILE )
+ 								abort();
+ 
+-							(*dcc->cb)(ircsession, dcc->id, err, dcc->ctx, dcc->incoming_buf, offset);
++							(*dcc->cb)(ircsession, dcc->id, err, dcc->ctx, (char *)(dcc->incoming_buf), offset);
+ 
+                             /*
+                              * If the session is not terminated in callback,
+@@ -366,12 +366,12 @@
+                              {
+                              	dcc->state = LIBIRC_STATE_CONFIRM_SIZE;
+                              	dcc->file_confirm_offset += offset;
+-                             	*((unsigned int*)dcc->outgoing_buf) = htonl (dcc->file_confirm_offset);
++                             	*((unsigned int*)(dcc->outgoing_buf)) = htonl (dcc->file_confirm_offset);
+                              	dcc->outgoing_offset = 4;
+ 							}
+ 						}
+ 						else
+-							(*dcc->cb)(ircsession, dcc->id, err, dcc->ctx, dcc->incoming_buf, strlen(dcc->incoming_buf));
++							(*dcc->cb)(ircsession, dcc->id, err, dcc->ctx, (char *)(dcc->incoming_buf), strlen((char *)(dcc->incoming_buf)));
+ 
+ 						libirc_mutex_lock (&ircsession->mutex_dcc);
+ 
+@@ -669,7 +669,7 @@
+ 
+ 	libirc_mutex_lock (&dcc->mutex_outbuf);
+ 
+-	strcpy (dcc->outgoing_buf + dcc->outgoing_offset, text);
++	strcpy ((char *)(dcc->outgoing_buf) + dcc->outgoing_offset, text);
+ 	dcc->outgoing_offset += strlen (text);
+ 	dcc->outgoing_buf[dcc->outgoing_offset++] = 0x0D;
+ 	dcc->outgoing_buf[dcc->outgoing_offset++] = 0x0A;

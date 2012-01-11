@@ -1,0 +1,15 @@
+--- libircclient-1.3/include/libirc_dcc.h	2009-01-03 11:14:59.000000000 +0000
++++ libircclient-1.3.new/include/libirc_dcc.h	2012-01-11 22:01:55.328096440 +0000
+@@ -44,10 +44,10 @@
+ 
+ 	struct sockaddr_in	remote_addr;
+ 
+-	char 			incoming_buf[LIBIRC_DCC_BUFFER_SIZE];
++	unsigned int 			incoming_buf[LIBIRC_DCC_BUFFER_SIZE / sizeof (unsigned int)];
+ 	unsigned int	incoming_offset;
+ 
+-	char 			outgoing_buf[LIBIRC_DCC_BUFFER_SIZE];
++	unsigned int 			outgoing_buf[LIBIRC_DCC_BUFFER_SIZE / sizeof (unsigned int)];
+ 	unsigned int	outgoing_offset;
+ 	port_mutex_t	mutex_outbuf;
+ 

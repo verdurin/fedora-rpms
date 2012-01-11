@@ -1,13 +1,18 @@
 Name:		libircclient
 Version:	1.3
-Release:	6%{?dist}
+Release:	8%{?dist}
 Summary:	Library implementing client-server IRC protocol
 Group:		System Environment/Libraries
 License:	LGPLv2+
-URL:		http://libircclient.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/project/libircclient/libircclient/%{version}/libircclient-%{version}.tar.gz
-Patch0:		libircclient-makefile.patch
+URL:		http://%{name}.sourceforge.net/
+Source0:	http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
+#Patch obsolete because upstream buildsystem ignored now
+#Patch0:		%%{name}-makefile.patch
+#Attempted fix for GCC 4.4+ strict aliasing problems
+Patch0:		%{name}-strictaliasing.patch
+Patch1:		%{name}-strictaliasing-dcc.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 
 BuildRequires:	automake
 
@@ -40,10 +45,12 @@ Header files for compiling against %{name}
 
 %prep
 %setup -q
-%patch0
+#%%patch0
+%patch0 -p1 -b .%{name}-strictaliasing.patch
+%patch1 -p1 -b .%{name}-strictaliasing-dcc.patch
 
 %build
-autoreconf
+#autoreconf
 %configure --enable-ipv6
 
 cd src
@@ -95,6 +102,13 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Jan 11 2012 Adam Huffman <verdurin@fedoraproject.org> - 1.3-8
+- two patches to fix strict aliasing problems
+
+* Sun Jan  8 2012 Adam Huffman <verdurin@fedoraproject.org> - 1.3-7
+- complete removal of upstream buildsystem
+- more consistent use of macros
+
 * Mon May  2 2011 Adam Huffman <bloch@verdurin.com> - 1.3-6
 - better soname fix
 
