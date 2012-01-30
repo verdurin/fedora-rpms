@@ -1,5 +1,5 @@
 Name:		cufflinks
-Version:	1.1.0
+Version:	1.3.0
 Release:	1%{?dist}
 Summary:	RNA-Seq transcript assembly, differential expression/regulation
 
@@ -11,8 +11,12 @@ Patch0:		%{name}-bam-header.patch
 Patch1:		%{name}-boost-thread.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	boost-devel samtools-devel zlib-devel
-BuildRequires:	autoconf automake python-devel
+BuildRequires:	boost-devel
+BuildRequires:	samtools-devel
+BuildRequires:	zlib-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	python-devel
 
 
 %description 
@@ -57,6 +61,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Jan 30 2012 Adam Huffman <verdurin@fedoraproject.org> - 1.3.0-1
+- update to upstream 1.3.0
+
 * Thu Sep 15 2011 Adam Huffman <bloch@verdurin.com> - 1.1.0-1
 - New upstream bugfix release 1.1.0
 
