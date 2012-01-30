@@ -1,5 +1,5 @@
 Name:		tophat
-Version:	1.3.3
+Version:	1.4.0
 Release:	1%{?dist}
 Summary:	A spliced read mapper for RNA-Seq
 
@@ -10,7 +10,11 @@ Source0:	http://tophat.cbcb.umd.edu/downloads/%{name}-%{version}.tar.gz
 Patch0:		%{name}-sam-header.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	autoconf automake python-devel samtools-devel zlib-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	python-devel
+BuildRequires:	samtools-devel
+BuildREquires:	zlib-devel
 BuildRequires:	dos2unix
 
 Requires:	bowtie
@@ -59,6 +63,11 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Jan 30 2012 Adam Huffman <verdurin@fedoraproject.org> - 1.4.0-1
+- update to upstream release 1.4.0
+- add map2gtf.h to samtools headers patch
+- update samtools headers patch
+
 * Tue Jan  3 2012 Adam Huffman <verdurin@fedoraproject.org> - 1.3.3-1
 - update to new upstream bugfix release 1.3.3
 
