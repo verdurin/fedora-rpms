@@ -2,7 +2,7 @@
 
 Name:		SeqAn
 Version:	1.3
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	Biological sequence analysis library
 
 Group:		Applications/Engineering
@@ -17,6 +17,7 @@ BuildRequires:	cmake
 BuildRequires:	zlib-devel
 BuildRequires:	samtools-devel
 BuildRequires:	dos2unix
+BuildRequires:	boost-devel
 
 %description
 
@@ -139,6 +140,9 @@ ctest
 %{_includedir}/seqan
 
 %changelog
+* Mon Jan 30 2012 Adam Huffman <verdurin@fedoraproject.org> - 1.3-5
+- add BR for Boost
+
 * Tue Jun 28 2011 Adam Huffman <bloch@verdurin.com> - 1.3-4
 - fix bad permissions
 
