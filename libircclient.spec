@@ -1,6 +1,6 @@
 Name:		libircclient
-Version:	1.3
-Release:	8%{?dist}
+Version:	1.5
+Release:	1%{?dist}
 Summary:	Library implementing client-server IRC protocol
 Group:		System Environment/Libraries
 License:	LGPLv2+
@@ -9,8 +9,8 @@ Source0:	http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{n
 #Patch obsolete because upstream buildsystem ignored now
 #Patch0:		%%{name}-makefile.patch
 #Attempted fix for GCC 4.4+ strict aliasing problems
-Patch0:		%{name}-strictaliasing.patch
-Patch1:		%{name}-strictaliasing-dcc.patch
+#Patch0:		%{name}-strictaliasing.patch
+#Patch1:		%{name}-strictaliasing-dcc.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 
@@ -46,8 +46,8 @@ Header files for compiling against %{name}
 %prep
 %setup -q
 #%%patch0
-%patch0 -p1 -b .%{name}-strictaliasing.patch
-%patch1 -p1 -b .%{name}-strictaliasing-dcc.patch
+#%patch0 -p1 -b .%{name}-strictaliasing.patch
+#%patch1 -p1 -b .%{name}-strictaliasing-dcc.patch
 
 %build
 #autoreconf
@@ -102,6 +102,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Jan 20 2012 Adam Huffman <verdurin@fedoraproject.org> - 1.5-1
+- New upstream release 1.5
+- disable GCC 4.7 patches for now
+
 * Wed Jan 11 2012 Adam Huffman <verdurin@fedoraproject.org> - 1.3-8
 - two patches to fix strict aliasing problems
 
