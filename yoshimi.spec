@@ -1,15 +1,12 @@
 Name:		yoshimi
 Version:	0.060.12
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Rewrite of ZynAddSubFx aiming for better JACK support
 
 Group:		Applications/Multimedia
 License:	GPLv2+
 URL:		http://sourceforge.net/projects/%{name}
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-Source1:	%{name}.desktop
-Source2:	%{name}.svg
-Patch0:		%{name}-fltk-1.3.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	jack-audio-connection-kit-devel
@@ -37,7 +34,7 @@ effects like Reverb, Echo, Chorus, Phaser...
 
 %prep
 %setup -q
-#%patch0 -p1 -b .yoshimi-fltk-1.3.patch
+
 
 %build
 cd src
@@ -47,15 +44,20 @@ make VERBOSE=1 %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
+
+#fix missing parameters in desktop file
+mv desktop/%{name}.desktop.in desktop/%{name}.desktop
+sed -e 's/@YOSHIMI_VERSION@/%{version}/' -e 's|@CMAKE_INSTALL_PREFIX@|/usr|g' \
+desktop/%{name}.desktop
+
 cd src
 make install DESTDIR=%{buildroot}
 
-
 mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE1}
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications ../desktop/%{name}.desktop
 
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
-install -m 644 %{SOURCE2} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+install -m 644 desktop/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/
 
 # Fix directory permissions without affecting patch files
 chmod 755  %{buildroot}%{_datadir}/%{name}/banks
@@ -84,10 +86,15 @@ fi
 %{_bindir}/%{name}
 %{_datadir}/%{name}/banks/
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+%{_datadir}/icons/hicolor/scalable/apps/%{name}.png
 %{_datadir}/%{name}/presets/
 
 %changelog
+* Sun Feb 19 2012 Adam Huffman <verdurin@fedoraproject.org> - 0.060.12-2
+- use upstream desktop and icon files
+- fix missing parameters in upstream desktop file
+- actually remove FLTK patch
+
 * Sun Jan  8 2012 Adam Huffman <verdurin@fedoraproject.org> - 0.060.12-1
 - update to new upstream release 0.060.12
 - remove FLTK 1.3 patch
