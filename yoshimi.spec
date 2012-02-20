@@ -1,12 +1,13 @@
 Name:		yoshimi
 Version:	0.060.12
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Rewrite of ZynAddSubFx aiming for better JACK support
 
 Group:		Applications/Multimedia
 License:	GPLv2+
 URL:		http://sourceforge.net/projects/%{name}
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+Source1:	%{name}.desktop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	jack-audio-connection-kit-devel
@@ -45,25 +46,24 @@ make VERBOSE=1 %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 
-#fix missing parameters in desktop file
-mv desktop/%{name}.desktop.in desktop/%{name}.desktop
-sed -e 's/@YOSHIMI_VERSION@/%{version}/' -e 's|@CMAKE_INSTALL_PREFIX@|/usr|g' \
-desktop/%{name}.desktop
-
 cd src
 make install DESTDIR=%{buildroot}
 
 mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --dir=%{buildroot}%{_datadir}/applications ../desktop/%{name}.desktop
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE1}
 
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
-install -m 644 desktop/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/
+install -m 644 ../desktop/%{name}.png %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/
+
+#Remove superfluous file
+rm %{buildroot}%{_datadir}/%{name}/banks/chip/.bankdir
 
 # Fix directory permissions without affecting patch files
 chmod 755  %{buildroot}%{_datadir}/%{name}/banks
 chmod 755  %{buildroot}%{_datadir}/%{name}/banks/*
 chmod 755 %{buildroot}%{_datadir}/%{name}/presets
 chmod 755 %{buildroot}%{_datadir}/%{name}/presets/*
+
 
 %clean
 rm -rf %{buildroot}
@@ -90,6 +90,10 @@ fi
 %{_datadir}/%{name}/presets/
 
 %changelog
+* Mon Feb 20 2012 Adam Huffman <verdurin@fedoraproject.org> - 0.060.12-3
+- re-add downstream desktop file
+- remove extra .bankdir file
+
 * Sun Feb 19 2012 Adam Huffman <verdurin@fedoraproject.org> - 0.060.12-2
 - use upstream desktop and icon files
 - fix missing parameters in upstream desktop file
