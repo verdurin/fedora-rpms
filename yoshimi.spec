@@ -1,6 +1,6 @@
 Name:		yoshimi
 Version:	0.060.12
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Rewrite of ZynAddSubFx aiming for better JACK support
 
 Group:		Applications/Multimedia
@@ -79,6 +79,8 @@ if [ $1 -eq 0 ]; then
   gtk-update-icon-cache %{_datadir}/icons/hicolor/scalable/apps >&/dev/null || :
 fi
 
+%posttrans
+/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor.scalable/apps &>/dev/null || :
 
 %files
 %defattr(-,root,root,-)
@@ -90,6 +92,9 @@ fi
 %{_datadir}/%{name}/presets/
 
 %changelog
+* Sun Apr 15 2012 Adam Huffman <verdurin@fedoraproject.org> - 0.060.12-4
+- add missing posttrans scriptlet
+
 * Mon Feb 20 2012 Adam Huffman <verdurin@fedoraproject.org> - 0.060.12-3
 - re-add downstream desktop file
 - remove extra .bankdir file
