@@ -1,0 +1,11 @@
+--- din-3.5/include/bot.h	2012-02-22 11:54:53.000000000 +0000
++++ din-3.5.new/include/bot.h	2012-08-22 23:09:58.986920528 +0100
+@@ -29,7 +29,7 @@
+ #ifndef __BOT
+ #define __BOT
+ 
+-#include <libircclient/libircclient.h>
++#include <libircclient.h>
+ #include <cstring>
+ #include "command.h"
+ #include "globals.h"

@@ -1,8 +1,8 @@
---- din-1.9.2/src/Makefile.am	2011-11-12 09:53:41.000000000 +0000
-+++ din-1.9.2.new/src/Makefile.am	2012-01-11 23:01:11.842055238 +0000
+--- din-3.5/src/Makefile.am	2012-04-29 15:54:19.000000000 +0100
++++ din-3.5.new/src/Makefile.am	2012-08-22 23:06:10.539813077 +0100
 @@ -1,5 +1,5 @@
 -AM_CXXFLAGS = $(liblo_CFLAGS) $(jack_CFLAGS) $(fftw3f_CFLAGS) -I /usr/include -I /usr/local/include -I /opt/include -I/usr/include/tcl8.5 -I/usr/local/include/tcl8.5 -I /opt/include/tcl8.5 -I ../include  -Wall -O3
--LIBS += $(liblo_LIBS) $(jack_LIBS) $(fftw3f_LIBS) -L/usr/lib/tcl8.5 -L/usr/local/lib/tcl8.5 -L /opt/lib/tcl8.5 -L /usr/lib -L /opt/lib -L /usr/local/lib -ltcl8.5 -lGL -lircclient
+-LIBS += $(liblo_LIBS) $(jack_LIBS) $(fftw3f_LIBS) -L/usr/lib/tcl8.5 -L/usr/local/lib/tcl8.5 -L /opt/lib/tcl8.5 -L /usr/lib -L /opt/lib -L /usr/local/lib -ltcl8.5 -lGL -lircclient -lrt -lX11
 +AM_CXXFLAGS = $(liblo_CFLAGS) $(jack_CFLAGS) $(fftw3f_CFLAGS) -I /usr/include -I ../include  -Wall -O2
 +LIBS += $(liblo_LIBS) $(jack_LIBS) $(fftw3f_LIBS) -ltcl8.5 -lGL -lircclient -lrt -lX11
  
